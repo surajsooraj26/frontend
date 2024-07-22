@@ -6,7 +6,7 @@ const New = () => {
   return (
     <div className="recentCustomers">
       <div className="cardHeader">
-        <h2>Recent Customers</h2>
+        <h2>Recent Students</h2>
       </div>
       <table>
         <tbody>

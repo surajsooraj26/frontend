@@ -5,7 +5,21 @@ const Main = () => {
   const inputRef = useRef(null);
 
   useEffect(() => {
+    const handleBodyClick = (e) => {
+      if (inputRef.current && e.target !== inputRef.current) {
+        inputRef.current.focus();
+      }
+    };
+
+    document.body.addEventListener("click", handleBodyClick);
+
+    // Focus input on mount
     inputRef.current.focus();
+
+    // Clean up event listener on unmount
+    return () => {
+      document.body.removeEventListener("click", handleBodyClick);
+    };
   }, []);
 
   return (

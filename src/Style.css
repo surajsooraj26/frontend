@@ -67,6 +67,8 @@ body {
 }
 
 .navigation ul li a {
+  display: flex;
+  align-items: center;
   position: relative;
   display: block;
   width: 100%;
@@ -78,14 +80,12 @@ body {
 .navigation ul li.hovered a {
   color: var(--blue);
 }
-
 .navigation ul li a .icon {
-  position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 60px;
   height: 60px;
-  line-height: 75px;
-  text-align: center;
 }
 .navigation ul li a .icon ion-icon {
   font-size: 1.75rem;
@@ -216,7 +216,7 @@ body {
   width: 100%;
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 30px;
 }
 
@@ -252,6 +252,7 @@ body {
 .cardBox .card:hover {
   background: var(--blue);
 }
+
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
 .cardBox .card:hover .iconBx {

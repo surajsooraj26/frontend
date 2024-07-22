@@ -6,10 +6,7 @@ const Slidebar = () => {
       <ul>
         <li>
           <a href="#">
-            <span className="icon">
-              <ion-icon name="logo-apple" />
-            </span>
-            <span className="title">Brand Name</span>
+            <span className="title">LOGO</span>
           </a>
         </li>
         <li>
@@ -25,7 +22,7 @@ const Slidebar = () => {
             <span className="icon">
               <ion-icon name="people-outline" />
             </span>
-            <span className="title">Customers</span>
+            <span className="title">Students</span>
           </a>
         </li>
         <li>
