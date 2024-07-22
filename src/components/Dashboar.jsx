@@ -4,12 +4,6 @@ import axios from "axios";
 import FormComponent from "./FormComponent";
 import LogComponent from "./LogComponent";
 
-import Slidebar from "./blocks/Slidebar";
-import Main from "./blocks/Main";
-import Cards from "./blocks/Cards";
-import Table from "./blocks/Table";
-import New from "./blocks/New";
-
 const Dashboard = ({ token }) => {
   const [message, setMessage] = useState("");
   const [activeComponent, setActiveComponent] = useState(null);
@@ -29,16 +23,11 @@ const Dashboard = ({ token }) => {
   }, [token]);
 
   return (
-    <div className="container">
-      <Slidebar />
-      <div className="main">
-        <Main />
-        <Cards />
-        <div className="details">
-          <Table />
-          <New />
-        </div>
-      </div>
+    <div>
+      <button onClick={() => setActiveComponent("form")}>Form</button>
+      <button onClick={() => setActiveComponent("log")}>Log</button>
+      {activeComponent === "form" && <FormComponent />}
+      {activeComponent === "log" && <LogComponent />}
     </div>
   );
 };
