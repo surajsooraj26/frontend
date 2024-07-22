@@ -7,7 +7,7 @@ import BannerBackground from "../assets/home-banner-background.png";
 import BannerImage from "../assets/home-banner-image.svg";
 import Navbar from "./Navbar";
 import { FiArrowRight } from "react-icons/fi";
-import Modal from 'react-modal'; 
+import Modal from "react-modal";
 ////
 
 const Home = ({ setToken }) => {
@@ -39,16 +39,15 @@ const Home = ({ setToken }) => {
           <img src={BannerBackground} alt="" />
         </div>
         <div className="home-text-section">
-          <h1 className="primary-heading">
-            Lorem
-          </h1>
+          <h1 className="primary-heading">Lorem</h1>
           <p className="primary-text">
-           
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum odio in nisl sollicitudin mollis.
- Vestibulum tellus diam, elementum mattis mattis mollis, finibus in ex. Cras ac augue pellentesque, viverra odio a, 
- dolor sit amet, consectetur adipiscing elit. Proin vestibulum odio in isl sollicitudin mollis.
- Vestibulum tellus diam, elementum mattis mattis mollis, finibus in ex. Cras ac augue pellentesque, viverra odio a, 
- 
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+            vestibulum odio in nisl sollicitudin mollis. Vestibulum tellus diam,
+            elementum mattis mattis mollis, finibus in ex. Cras ac augue
+            pellentesque, viverra odio a, dolor sit amet, consectetur adipiscing
+            elit. Proin vestibulum odio in isl sollicitudin mollis. Vestibulum
+            tellus diam, elementum mattis mattis mollis, finibus in ex. Cras ac
+            augue pellentesque, viverra odio a,
           </p>
           <button className="secondary-button" onClick={() => setVisible(true)}>
             Log In <FiArrowRight />{" "}
@@ -59,35 +58,48 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum odio i
         </div>
       </div>
       <Modal
-                isOpen={visible}
-                onRequestClose={() => setVisible(false)}
-                contentLabel="Login Modal"
-                className="Modal">
-                  <div className="header">
-                <h2 className="h2">Login</h2>
-                <CgCloseO onClick={() => setVisible(false)} className="close"/>
+        isOpen={visible}
+        onRequestClose={() => setVisible(false)}
+        contentLabel="Login Modal"
+        className="Modal"
+      >
+        <div className="header">
+          <h2 className="h2">Login</h2>
+          <div className="close-container">
+            <CgCloseO onClick={() => setVisible(false)} className="close" />
+          </div>
+        </div>
 
-                  </div>
-
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
-                        <input type="text" placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)} id="username" name="username" className="form-control" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password"  placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)} id="password" name="password" className="form-control" />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Log In</button>
-                    
-
-                    
-                </form>
-            </Modal>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              id="username"
+              name="username"
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              id="password"
+              name="password"
+              className="form-control"
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Log In
+          </button>
+        </form>
+      </Modal>
     </div>
   );
 };
