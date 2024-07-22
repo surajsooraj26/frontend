@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode"; // Change to camel case and ensure default import
-import Login from "./components/Login";
+import Home from "./components/Home";
+import Footer from "./components/Footer";
 import Dashboard from "./components/Dashboard";
 
 const App = () => {
@@ -22,7 +23,11 @@ const App = () => {
 
   return (
     <div>
-      {!token ? <Login setToken={setToken} /> : <Dashboard token={token} />}
+      {!token ? <div className="App">
+          <Home setToken={setToken} />
+          <Footer />
+        </div>
+        : <Dashboard token={token} />}
     </div>
   );
 };
