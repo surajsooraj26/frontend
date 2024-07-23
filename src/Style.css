@@ -271,23 +271,26 @@ body {
 }
 
 .details .recentOrders {
-  position: relative;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   min-height: 500px;
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
 }
-
 .details .cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  height: fit-content;
+  padding-bottom: 10px;
 }
 .cardHeader h2 {
   font-weight: 600;
   color: var(--blue);
+  margin: 0; /* Added to remove default margin */
+  padding: 0;
 }
 .cardHeader .btn {
   position: relative;
@@ -296,6 +299,8 @@ body {
   text-decoration: none;
   color: var(--white);
   border-radius: 6px;
+  margin: 0;
+  padding: 0;
 }
 
 .details table {
@@ -303,6 +308,11 @@ body {
   border-collapse: collapse;
   margin-top: 10px;
 }
+.table-container {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
 .details table thead td {
   font-weight: 600;
 }

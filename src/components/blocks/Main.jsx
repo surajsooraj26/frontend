@@ -1,9 +1,11 @@
 // frontend/src/Main.jsx
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
+import { LogContext } from "../contexts/LogContext";
 import axios from "axios";
 import customer01 from "../../assets/customer01.jpg";
 
 const Main = () => {
+  const { setlogData } = useContext(LogContext);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const Main = () => {
           const response = await axios.post("http://localhost:3500/log", {
             regno,
           });
-          console.log("Server Response:", response.data);
+          setlogData(response.data);
         } catch (error) {
           console.error("Error:", error);
         }
@@ -38,7 +40,7 @@ const Main = () => {
       document.body.removeEventListener("click", handleBodyClick);
       inputRef.current.removeEventListener("keypress", handleEnterKeyPress);
     };
-  }, []);
+  }, [setlogData]);
 
   return (
     <div className="topbar">

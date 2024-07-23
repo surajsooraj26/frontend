@@ -1,6 +1,7 @@
 // Dashboard.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { LogContext } from "./contexts/LogContext";
 import FormComponent from "./FormComponent";
 import LogComponent from "./LogComponent";
 
@@ -12,6 +13,7 @@ import New from "./blocks/New";
 
 const Dashboard = ({ token }) => {
   const [message, setMessage] = useState("");
+  const [logData, setlogData] = useState(null);
   const [activeComponent, setActiveComponent] = useState(null);
 
   useEffect(() => {
@@ -32,12 +34,14 @@ const Dashboard = ({ token }) => {
     <div className="container">
       <Slidebar />
       <div className="main">
-        <Main />
-        <Cards />
-        <div className="details">
-          <Table />
-          <New />
-        </div>
+        <LogContext.Provider value={{ logData, setlogData }}>
+          <Main />
+          <Cards />
+          <div className="details">
+            <Table />
+            <New />
+          </div>
+        </LogContext.Provider>
       </div>
     </div>
   );
