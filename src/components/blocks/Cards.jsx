@@ -6,16 +6,16 @@ const Cards = () => {
       <div className="card">
         <div>
           <div className="numbers">1,504</div>
-          <div className="cardName">Daily Views</div>
+          <div className="cardName">Total Students</div>
         </div>
         <div className="iconBx">
-          <ion-icon name="eye-outline" />
+          <ion-icon name="People-outline" />
         </div>
       </div>
       <div className="card">
         <div>
           <div className="numbers">80</div>
-          <div className="cardName">Sales</div>
+          <div className="cardName">Status-In</div>
         </div>
         <div className="iconBx">
           <ion-icon name="cart-outline" />
@@ -24,7 +24,7 @@ const Cards = () => {
       <div className="card">
         <div>
           <div className="numbers">284</div>
-          <div className="cardName">Comments</div>
+          <div className="cardName">Status-Out</div>
         </div>
         <div className="iconBx">
           <ion-icon name="chatbubbles-outline" />
