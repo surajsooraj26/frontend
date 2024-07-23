@@ -1,4 +1,6 @@
+// frontend/src/Main.jsx
 import React, { useEffect, useRef } from "react";
+import axios from "axios";
 import customer01 from "../../assets/customer01.jpg";
 
 const Main = () => {
@@ -11,14 +13,30 @@ const Main = () => {
       }
     };
 
+    const handleEnterKeyPress = async (e) => {
+      if (e.key === "Enter") {
+        const regno = inputRef.current.value;
+        try {
+          const response = await axios.post("http://localhost:3500/log", {
+            regno,
+          });
+          console.log("Server Response:", response.data);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
+    };
+
     document.body.addEventListener("click", handleBodyClick);
+    inputRef.current.addEventListener("keypress", handleEnterKeyPress);
 
     // Focus input on mount
     inputRef.current.focus();
 
-    // Clean up event listener on unmount
+    // Clean up event listeners on unmount
     return () => {
       document.body.removeEventListener("click", handleBodyClick);
+      inputRef.current.removeEventListener("keypress", handleEnterKeyPress);
     };
   }, []);
 
