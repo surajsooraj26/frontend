@@ -23,6 +23,7 @@ const Main = () => {
             regno,
           });
           setlogData(response.data);
+          inputRef.current.value = ""; // Clear the input field
         } catch (error) {
           console.error("Error:", error);
         }

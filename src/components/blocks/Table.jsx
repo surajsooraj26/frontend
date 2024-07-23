@@ -30,9 +30,9 @@ const Table = () => {
               <td>
                 {" "}
                 {logData?.out_time
-                  ? logData.out_time.split(" ")[0]
+                  ? logData.out_time.split(" ").slice(0, 2).join(" ")
                   : logData?.in_time
-                  ? logData.in_time.split(" ")[0]
+                  ? logData.in_time.split(" ").slice(0, 2).join(" ")
                   : " "}{" "}
               </td>
               <td>
