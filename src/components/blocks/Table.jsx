@@ -1,10 +1,24 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { LogContext } from "../contexts/LogContext";
+import { DataContext } from "../contexts/DataContext";
+
 import React from "react";
 
 const Table = () => {
   const { logData } = useContext(LogContext);
-  console.log(`responce in table ${logData}`); // Conditional rendering
+  const { log, setlog } = useContext(DataContext);
+
+  useEffect(() => {
+    if (logData) {
+      setlog((prevLog) => {
+        const updatedLog = [...prevLog];
+        updatedLog.pop(); // Remove the last element
+        updatedLog.unshift(logData); // Add logData at the beginning of the array
+        return updatedLog;
+      });
+    }
+  }, [logData, setlog]); // Only depend on logData and setlog
+
   return (
     <div className="recentOrders">
       <div className="cardHeader">
@@ -24,31 +38,34 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{logData?.name}</td>
-              <td>{logData?.programme}</td>
-              <td>
-                {" "}
-                {logData?.out_time
-                  ? logData.out_time.split(" ").slice(0, 2).join(" ")
-                  : logData?.in_time
-                  ? logData.in_time.split(" ").slice(0, 2).join(" ")
-                  : " "}{" "}
-              </td>
-              <td>
-                <span
-                  className={`status ${
-                    logData?.out_time
-                      ? "return"
-                      : logData?.in_time
-                      ? "delivered"
-                      : ""
-                  }`}
-                >
-                  {logData?.out_time ? "OUT" : logData?.in_time ? "IN" : ""}
-                </span>{" "}
-              </td>
-            </tr>
+            {log && log.length > 0 ? (
+              log.map((entry, index) => (
+                <tr key={index}>
+                  <td>{entry.name}</td>
+                  <td>{entry.programme}</td>
+                  <td>
+                    {entry.out_time
+                      ? entry.out_time.split(" ").slice(0, 2).join(" ")
+                      : entry.in_time.split(" ").slice(0, 2).join(" ")}
+                  </td>
+                  <td>
+                    <span
+                      className={
+                        entry.status === "IN"
+                          ? "status delivered"
+                          : "status return"
+                      }
+                    >
+                      {entry.status}
+                    </span>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4">No data available</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
