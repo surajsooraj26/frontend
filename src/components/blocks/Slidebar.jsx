@@ -1,16 +1,16 @@
 import React from "react";
 
-const Slidebar = () => {
+const Slidebar = ({ onLinkClick }) => {
   return (
     <div className="navigation">
       <ul>
         <li>
-          <a href="#">
+          <a href="#" onClick={() => onLinkClick('main')}>
             <span className="title">LOGO</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" onClick={() => onLinkClick('main')}>
             <span className="icon">
               <ion-icon name="home-outline" />
             </span>
@@ -18,7 +18,7 @@ const Slidebar = () => {
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" onClick={() => onLinkClick('students')}>
             <span className="icon">
               <ion-icon name="people-outline" />
             </span>
@@ -26,7 +26,7 @@ const Slidebar = () => {
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" onClick={() => onLinkClick('messages')}>
             <span className="icon">
               <ion-icon name="chatbubble-outline" />
             </span>

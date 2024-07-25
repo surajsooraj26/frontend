@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { LogContext } from "./contexts/LogContext";
 import { DataContext } from "./contexts/DataContext";
-import FormComponent from "./FormComponent";
+import Form from "./blocks/Form";
 import LogComponent from "./LogComponent";
 
 import Slidebar from "./blocks/Slidebar";
@@ -17,6 +17,8 @@ const Dashboard = ({ token }) => {
   const [logData, setlogData] = useState(null);
   const [log, setlog] = useState(null);
   const [activeComponent, setActiveComponent] = useState(null);
+  const [currentView, setCurrentView] = useState('main'); // State to track current view
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,8 +43,11 @@ const Dashboard = ({ token }) => {
 
   return (
     <div className="container">
-      <Slidebar />
-      <div className="main">
+    <Slidebar onLinkClick={(view) => setCurrentView(view)} />
+      {currentView === 'students' && (
+      <Form />)}
+      {currentView === 'main' && (
+    <div className="main">
         <LogContext.Provider value={{ logData, setlogData }}>
           <Main />
           <Cards />
@@ -53,8 +58,10 @@ const Dashboard = ({ token }) => {
             <New />
           </div>
         </LogContext.Provider>
-      </div>
     </div>
+      )}
+      {currentView === 'messages' && <AllLog />}
+  </div>
   );
 };
 

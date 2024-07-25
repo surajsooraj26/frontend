@@ -39,7 +39,12 @@ const Main = () => {
     // Clean up event listeners on unmount
     return () => {
       document.body.removeEventListener("click", handleBodyClick);
-      inputRef.current.removeEventListener("keypress", handleEnterKeyPress);
+      if(inputRef.current){
+        inputRef.current.removeEventListener("keypress", handleEnterKeyPress);
+
+      }
+
+      
     };
   }, [setlogData]);
 

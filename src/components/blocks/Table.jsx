@@ -44,10 +44,11 @@ const Table = () => {
                   <td>{entry.name}</td>
                   <td>{entry.programme}</td>
                   <td>
-                    {entry.out_time
-                      ? entry.out_time.split(" ").slice(0, 2).join(" ")
-                      : entry.in_time.split(" ").slice(0, 2).join(" ")}
-                  </td>
+  {entry.out_time && entry.out_time.split(" ").slice(0, 2).join(" ") ||
+   entry.in_time && entry.in_time.split(" ").slice(0, 2).join(" ") || 
+   "no userdata"}
+</td>
+{/* need to change no userdata to alert or new component */}
                   <td>
                     <span
                       className={
