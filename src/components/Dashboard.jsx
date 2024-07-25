@@ -17,8 +17,7 @@ const Dashboard = ({ token }) => {
   const [logData, setlogData] = useState(null);
   const [log, setlog] = useState(null);
   const [activeComponent, setActiveComponent] = useState(null);
-  const [currentView, setCurrentView] = useState('main'); // State to track current view
-
+  const [currentView, setCurrentView] = useState("main"); // State to track current view
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,25 +42,24 @@ const Dashboard = ({ token }) => {
 
   return (
     <div className="container">
-    <Slidebar onLinkClick={(view) => setCurrentView(view)} />
-      {currentView === 'students' && (
-      <Form />)}
-      {currentView === 'main' && (
-    <div className="main">
-        <LogContext.Provider value={{ logData, setlogData }}>
-          <Main />
-          <Cards />
-          <div className="details">
-            <DataContext.Provider value={{ log, setlog }}>
-              <Table data={log} />
-            </DataContext.Provider>
-            <New />
-          </div>
-        </LogContext.Provider>
-    </div>
+      <Slidebar onLinkClick={(view) => setCurrentView(view)} />
+      {currentView === "students" && <Form />}
+      {currentView === "main" && (
+        <div className="main">
+          <LogContext.Provider value={{ logData, setlogData }}>
+            <Main />
+            <Cards />
+            <div className="details">
+              <DataContext.Provider value={{ log, setlog }}>
+                <Table data={log} />
+              </DataContext.Provider>
+              <New />
+            </div>
+          </LogContext.Provider>
+        </div>
       )}
-      {currentView === 'messages' && <AllLog />}
-  </div>
+      {currentView === "messages" && <AllLog />}
+    </div>
   );
 };
 

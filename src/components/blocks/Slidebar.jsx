@@ -5,12 +5,19 @@ const Slidebar = ({ onLinkClick }) => {
     <div className="navigation">
       <ul>
         <li>
-          <a href="#" onClick={() => onLinkClick('main')}>
+          <a href="#" onClick={() => onLinkClick("main")}>
             <span className="title">LOGO</span>
           </a>
         </li>
         <li>
-          <a href="#" onClick={() => onLinkClick('main')}>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              onLinkClick("main");
+            }}
+          >
+            {" "}
             <span className="icon">
               <ion-icon name="home-outline" />
             </span>
@@ -18,21 +25,28 @@ const Slidebar = ({ onLinkClick }) => {
           </a>
         </li>
         <li>
-          <a href="#" onClick={() => onLinkClick('students')}>
-            <span className="icon">
-              <ion-icon name="people-outline" />
-            </span>
-            <span className="title">Students</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" onClick={() => onLinkClick('messages')}>
+          <a href="#" onClick={() => onLinkClick("messages")}>
             <span className="icon">
               <ion-icon name="chatbubble-outline" />
             </span>
             <span className="title">Messages</span>
           </a>
         </li>
+        <li>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              onLinkClick("students");
+            }}
+          >
+            <span className="icon">
+              <ion-icon name="people-outline" />
+            </span>
+            <span className="title">Add User</span>
+          </a>
+        </li>
+
         <li>
           <a href="#">
             <span className="icon">
