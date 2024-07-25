@@ -4,6 +4,8 @@ import axios from "axios";
 import { LogContext } from "./contexts/LogContext";
 import { DataContext } from "./contexts/DataContext";
 import Form from "./blocks/Form";
+import AllLog from "./blocks/Alllog";
+
 import LogComponent from "./LogComponent";
 
 import Slidebar from "./blocks/Slidebar";
@@ -43,7 +45,6 @@ const Dashboard = ({ token }) => {
   return (
     <div className="container">
       <Slidebar onLinkClick={(view) => setCurrentView(view)} />
-      {currentView === "students" && <Form />}
       {currentView === "main" && (
         <div className="main">
           <LogContext.Provider value={{ logData, setlogData }}>
@@ -51,14 +52,17 @@ const Dashboard = ({ token }) => {
             <Cards />
             <div className="details">
               <DataContext.Provider value={{ log, setlog }}>
-                <Table data={log} />
+                <Table onLinkClick={(view) => setCurrentView(view)}/>
               </DataContext.Provider>
               <New />
             </div>
           </LogContext.Provider>
         </div>
       )}
-      {currentView === "messages" && <AllLog />}
+      {currentView === "register" &&         <div className="main">
+
+        <Form /></div>}
+      {currentView === "activitylog" && <AllLog />}
     </div>
   );
 };

@@ -3,38 +3,92 @@ import Main from "./Main";
 
 const Form = () => {
   return (
-    <div className="main">
-      <Main />
-      <div className="cardBox">
-        <div className="card">
-          <div>
-            <div className="numbers">FORM</div>
-            <div className="cardName">Total Students</div>
+
+    
+    <div className="details1">
+  <div className="recentOrders">
+    <div className="cardHeader">
+      <h2>Register Student</h2>
+    </div>
+    <form>
+      <div className="form-group">
+        <label htmlFor="register">Register number</label>
+        <input
+          type="text"
+          placeholder="Register Number"
+          id="register"
+          name="register"
+          className="form-control"
+        />
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          placeholder="Full Name"
+          id="name"
+          name="name"
+          className="form-control"
+        />
+        <div className="form-group">
+          <label htmlFor="photograph">Photograph</label>
+          <input
+            type="file"
+            placeholder="Photograph"
+            id="photograph"
+            name="photograph"
+            className="form-control"
+          />
+          <div className="form-group">
+            <label htmlFor="course">Course</label>
+            <select id="course" name="course" className="form-control">
+              <option value="select">Select Course</option>
+              <option value="math">MSc Computer Science</option>
+              <option value="science">MSc Computer Science(AI)</option>
+              <option value="history">MSc Computer Science(ML)</option>
+              <option value="history">BSc Computer Science(ML)</option>
+              <option value="history">M.tech</option>
+              {/* Add more options as needed */}
+            </select>
           </div>
-          <div className="iconBx">
-            <ion-icon name="People-outline" />
+          <div className="form-group">
+            <label htmlFor="starting">Starting year</label>
+            <input
+              type="number"
+              id="starting"
+              name="starting"
+              min={2020}
+              max={2100}
+              step={1}
+            />
+            <div className="form-group">
+              <label htmlFor="ending">Ending year</label>
+              <input
+              type="number"
+              id="starting"
+              name="starting"
+              min={2020}
+              max={2100}
+              step={1}
+            />
+            </div>
+            <div className="form-group">
+              <label htmlFor="gender">Gender</label>
+              <div>
+                <select name="gender" id="">
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="card">
-          <div>
-            <div className="numbers">80</div>
-            <div className="cardName">Status-In</div>
-          </div>
-          <div className="iconBx">
-            <ion-icon name="cart-outline" />
-          </div>
-        </div>
-        <div className="card">
-          <div>
-            <div className="numbers">284</div>
-            <div className="cardName">Status-Out</div>
-          </div>
-          <div className="iconBx">
-            <ion-icon name="chatbubbles-outline" />
-          </div>
+          <button type="submit" className="btn btn-primary">
+            Register
+          </button>
         </div>
       </div>
-    </div>
+    </form>
+  </div>
+</div>
+
   );
 };
 

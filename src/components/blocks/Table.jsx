@@ -4,7 +4,7 @@ import { DataContext } from "../contexts/DataContext";
 
 import React from "react";
 
-const Table = () => {
+const Table = ({onLinkClick}) => {
   const { logData } = useContext(LogContext);
   const { log, setlog } = useContext(DataContext);
 
@@ -23,7 +23,13 @@ const Table = () => {
     <div className="recentOrders">
       <div className="cardHeader">
         <h2>Recent Entries</h2>
-        <a href="#" className="btn">
+        <a
+            href="#" className="btn"
+            onClick={(e) => {
+              e.preventDefault();
+              onLinkClick("activitylog");
+            }}
+          >
           View All
         </a>
       </div>

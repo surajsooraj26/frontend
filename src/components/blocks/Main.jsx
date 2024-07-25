@@ -1,18 +1,22 @@
 // frontend/src/Main.jsx
-import React, { useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext, useState} from "react";
 import { LogContext } from "../contexts/LogContext";
 import axios from "axios";
 import customer01 from "../../assets/customer01.jpg";
 
-const Main = () => {
+const Main = ({view}) => {
   const { setlogData } = useContext(LogContext);
+  const [currentView, setCurrentView] = useState(view);
+
   const inputRef = useRef(null);
 
   useEffect(() => {
     const handleBodyClick = (e) => {
-      if (inputRef.current && e.target !== inputRef.current) {
-        inputRef.current.focus();
-      }
+        if (inputRef.current && e.target !== inputRef.current) {
+          inputRef.current.focus();
+        }
+
+      
     };
 
     const handleEnterKeyPress = async (e) => {
@@ -34,7 +38,9 @@ const Main = () => {
     inputRef.current.addEventListener("keypress", handleEnterKeyPress);
 
     // Focus input on mount
-    inputRef.current.focus();
+      inputRef.current.focus();
+
+    
 
     // Clean up event listeners on unmount
     return () => {
