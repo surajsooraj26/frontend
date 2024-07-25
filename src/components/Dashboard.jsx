@@ -5,6 +5,7 @@ import { LogContext } from "./contexts/LogContext";
 import { DataContext } from "./contexts/DataContext";
 import Form from "./blocks/Form";
 import AllLog from "./blocks/Alllog";
+import AllUsers from "./blocks/AllUsers";
 
 import LogComponent from "./LogComponent";
 
@@ -52,17 +53,20 @@ const Dashboard = ({ token }) => {
             <Cards />
             <div className="details">
               <DataContext.Provider value={{ log, setlog }}>
-                <Table onLinkClick={(view) => setCurrentView(view)}/>
+                <Table onLinkClick={(view) => setCurrentView(view)} />
               </DataContext.Provider>
               <New />
             </div>
           </LogContext.Provider>
         </div>
       )}
-      {currentView === "register" &&         <div className="main">
-
-        <Form /></div>}
+      {currentView === "register" && (
+        <div className="main">
+          <Form />
+        </div>
+      )}
       {currentView === "activitylog" && <AllLog />}
+      {currentView === "userslist" && <AllUsers />}
     </div>
   );
 };

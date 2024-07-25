@@ -25,13 +25,15 @@ const Slidebar = ({ onLinkClick }) => {
           </a>
         </li>
         <li>
-        <a
+          <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               onLinkClick("activitylog");
             }}
-          >            <span className="icon">
+          >
+            {" "}
+            <span className="icon">
               <ion-icon name="chatbubble-outline" />
             </span>
             <span className="title">Activity log</span>
@@ -53,11 +55,18 @@ const Slidebar = ({ onLinkClick }) => {
         </li>
 
         <li>
-          <a href="#">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              onLinkClick("userslist");
+            }}
+          >
+            {" "}
             <span className="icon">
               <ion-icon name="help-outline" />
             </span>
-            <span className="title">Help</span>
+            <span className="title">All Users</span>
           </a>
         </li>
         <li>
