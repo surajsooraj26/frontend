@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 import Main from "./Main";
 import { format } from "date-fns";
 
@@ -17,12 +19,31 @@ const AllLog = () => {
           console.error("Expected an array but got:", response.data);
           setTotalLog([]);
         }
-        // setTotalLog(response.data);
       })
       .catch((error) => {
         console.error("There was an error fetching the data!", error);
       });
   }, [setTotalLog]);
+
+  const handlePrint = () => {
+    const doc = new jsPDF();
+
+    doc.autoTable({
+      head: [["Register Number", "Name", "Programme", "In Time", "Out Time"]],
+      body: totalLog.map((log) => [
+        log.regNo,
+        log.name,
+        log.programme,
+        log.in_time,
+        log.out_time,
+      ]),
+      bodyStyles: {
+        lineColor: 5,
+      },
+    });
+
+    doc.save("Activity_Log.pdf");
+  };
 
   return (
     <div className="main">
@@ -30,9 +51,9 @@ const AllLog = () => {
         <div className="recentOrders">
           <div className="cardHeader">
             <h2>Activity Log</h2>
-            <a href="#" className="btn">
+            <button className="btn" onClick={handlePrint}>
               Print
-            </a>
+            </button>
           </div>
           <table>
             <thead>
