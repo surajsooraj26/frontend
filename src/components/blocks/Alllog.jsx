@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Main from "./Main";
+import { format } from "date-fns";
 
 const AllLog = () => {
   const [totalLog, setTotalLog] = useState([]);
@@ -9,8 +10,8 @@ const AllLog = () => {
     axios
       .post("http://localhost:3500/all_log")
       .then((response) => {
-         // Ensure the response data is an array
-         if (Array.isArray(response.data)) {
+        // Ensure the response data is an array
+        if (Array.isArray(response.data)) {
           setTotalLog(response.data);
         } else {
           console.error("Expected an array but got:", response.data);
@@ -25,8 +26,6 @@ const AllLog = () => {
 
   return (
     <div className="main">
-      <Main />
-      
       <div className="details3">
         <div className="recentOrders">
           <div className="cardHeader">
