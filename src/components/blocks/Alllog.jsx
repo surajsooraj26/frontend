@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
-import Main from "./Main";
-import { format } from "date-fns";
 
 const AllLog = () => {
   const [totalLog, setTotalLog] = useState([]);

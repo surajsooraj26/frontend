@@ -104,6 +104,7 @@ const Form = () => {
               value={formData.regNo}
               onChange={handleChange}
               ref={inputRefs.regNo}
+              required
             />
             <label htmlFor="name">Name</label>
             <input
@@ -115,6 +116,7 @@ const Form = () => {
               value={formData.name}
               onChange={handleChange}
               ref={inputRefs.name}
+              required
             />
             <label htmlFor="photograph">Photograph</label>
             <input
@@ -125,6 +127,7 @@ const Form = () => {
               className="form-control"
               onChange={handleChange}
               ref={inputRefs.photograph}
+              required
             />
             <div className="form-group">
               <label htmlFor="course">Course</label>
@@ -135,6 +138,7 @@ const Form = () => {
                 value={formData.programme}
                 onChange={handleChange}
                 ref={inputRefs.programme}
+                required
               >
                 <option value="">Select Course</option>
                 <option value="MSc Computer Science">
@@ -161,6 +165,7 @@ const Form = () => {
                 value={formData.duration.start}
                 onChange={handleChange}
                 ref={inputRefs.durationStart}
+                required
               />
             </div>
             <div className="form-group">
@@ -175,6 +180,7 @@ const Form = () => {
                 value={formData.duration.end}
                 onChange={handleChange}
                 ref={inputRefs.durationEnd}
+                required
               />
             </div>
             <div className="form-group">
@@ -186,6 +192,7 @@ const Form = () => {
                   value={formData.gender}
                   onChange={handleChange}
                   ref={inputRefs.gender}
+                  required
                 >
                   <option value="">Select Gender</option>
                   <option value="Male">Male</option>
