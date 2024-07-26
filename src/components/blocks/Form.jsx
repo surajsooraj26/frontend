@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 
 const Form = () => {
@@ -10,6 +10,17 @@ const Form = () => {
     gender: "",
   });
   const [file, setFile] = useState(null);
+
+  // Create refs for each input field
+  const inputRefs = {
+    regNo: useRef(null),
+    name: useRef(null),
+    programme: useRef(null),
+    durationStart: useRef(null),
+    durationEnd: useRef(null),
+    gender: useRef(null),
+    photograph: useRef(null),
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -54,6 +65,22 @@ const Form = () => {
         }
       );
       console.log(response.data);
+      alert("User added successfully");
+
+      // Clear the form inputs
+      Object.keys(inputRefs).forEach((key) => {
+        inputRefs[key].current.value = "";
+      });
+
+      // Optionally, reset the form data state
+      setFormData({
+        regNo: "",
+        name: "",
+        programme: "",
+        duration: { start: "", end: "" },
+        gender: "",
+      });
+      setFile(null);
     } catch (error) {
       console.error("There was an error submitting the form!", error);
     }
@@ -76,6 +103,7 @@ const Form = () => {
               className="form-control"
               value={formData.regNo}
               onChange={handleChange}
+              ref={inputRefs.regNo}
             />
             <label htmlFor="name">Name</label>
             <input
@@ -86,6 +114,7 @@ const Form = () => {
               className="form-control"
               value={formData.name}
               onChange={handleChange}
+              ref={inputRefs.name}
             />
             <label htmlFor="photograph">Photograph</label>
             <input
@@ -95,6 +124,7 @@ const Form = () => {
               name="photograph"
               className="form-control"
               onChange={handleChange}
+              ref={inputRefs.photograph}
             />
             <div className="form-group">
               <label htmlFor="course">Course</label>
@@ -104,6 +134,7 @@ const Form = () => {
                 className="form-control"
                 value={formData.programme}
                 onChange={handleChange}
+                ref={inputRefs.programme}
               >
                 <option value="">Select Course</option>
                 <option value="MSc Computer Science">
@@ -129,6 +160,7 @@ const Form = () => {
                 step={1}
                 value={formData.duration.start}
                 onChange={handleChange}
+                ref={inputRefs.durationStart}
               />
             </div>
             <div className="form-group">
@@ -142,6 +174,7 @@ const Form = () => {
                 step={1}
                 value={formData.duration.end}
                 onChange={handleChange}
+                ref={inputRefs.durationEnd}
               />
             </div>
             <div className="form-group">
@@ -152,7 +185,9 @@ const Form = () => {
                   className="form-control"
                   value={formData.gender}
                   onChange={handleChange}
+                  ref={inputRefs.gender}
                 >
+                  <option value="">Select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>

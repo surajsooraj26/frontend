@@ -496,6 +496,91 @@ body {
 }
 
 
+
+.details3 {
+  position: relative;
+  width: 100%;
+  padding: 40px;
+}
+
+.details3 .recentOrders {
+  position: relative;
+  min-height: 1000px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.details3 .cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px; /* Added margin to separate the heading from the table */
+}
+
+.cardHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+  text-align: left; /* Align header text to the left */
+  margin: 0;
+}
+
+.cardHeader .btn {
+  padding: 5px 10px;
+  background: var(--blue);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
+  margin-left: auto; /* Pushes the button to the right */
+}
+
+.details3 table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0; /* Remove default margin if any */
+}
+
+.details3 table thead th {
+  font-weight: 600;
+  padding: 10px; /* Add padding for spacing */
+  background: var(--light-gray); /* Optional: Background color for headings */
+}
+
+.details3 table tbody td {
+  padding: 10px; /* Add padding for spacing */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Optional: Border for rows */
+}
+
+.details3 table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.details3 table tbody tr:hover {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.details3 table thead td,
+.details3 table tbody td {
+  text-align: left; /* Ensure text alignment is consistent */
+}
+.card1 {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 40px; /* Adjust padding to create appropriate space */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.cardHeadero h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+
 /* ====================== Responsive Design ========================== */
 
 
