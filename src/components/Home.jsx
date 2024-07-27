@@ -81,6 +81,7 @@ const Home = ({ setToken }) => {
               id="username"
               name="username"
               className="form-control"
+              required
             />
           </div>
           <div className="form-group">
@@ -93,6 +94,7 @@ const Home = ({ setToken }) => {
               id="password"
               name="password"
               className="form-control"
+              required
             />
           </div>
           <button type="submit" className="btn btn-primary">

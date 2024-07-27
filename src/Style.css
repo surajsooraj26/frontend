@@ -416,9 +416,6 @@ body {
   color: var(--white);
 }
 
-
-
-
 .details3 .imgBx {
   position: relative;
   width: 40px;
@@ -445,9 +442,6 @@ body {
   /* display: grid; */
   /* grid-template-columns: 2fr 1fr;
   grid-gap: 30px; */
- 
- 
-  
 }
 
 .details1 .recentOrders {
@@ -465,13 +459,11 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   justify-content: center; /* Center items horizontally */
-  
 }
 .cardHeader h2 {
   font-weight: 600;
   color: var(--blue);
   text-align: center;
-  
 }
 .cardHeader .btn {
   position: relative;
@@ -513,8 +505,6 @@ body {
 .details1 .recentOrders table tr td:nth-child(3) {
   text-align: center;
 }
-
-
 
 .details3 {
   position: relative;
@@ -599,12 +589,7 @@ body {
   margin: 0;
 }
 
-
 /* ====================== Responsive Design ========================== */
-
-
-
-
 
 .card {
   background-color: #fff;
@@ -641,7 +626,7 @@ input[type="number"] {
   border-radius: 4px;
   font-size: 1rem;
 }
-select{
+select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -660,7 +645,7 @@ button.btn {
 }
 
 button.btn:hover {
-  background-color: #007bff;
+  background-color: #6c63ff;
 }
 
 .btn-primary {
@@ -668,7 +653,7 @@ button.btn:hover {
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
+  background-color: #6c63ff;
 }
 
 /* ====================== Responsive Design ========================== */
@@ -691,7 +676,6 @@ button.btn:hover {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (max-width: 768px) {
   .details {
     grid-template-columns: 1fr;
@@ -703,7 +687,29 @@ button.btn:hover {
     white-space: nowrap;
   }
 }
+.filter {
+  position: relative;
+  padding: 10px 20px;
 
+  border-radius: 6px;
+  color: var(--blue);
+  border: 2px solid white;
+  background: none;
+  margin: 0; /* Remove default margin */
+  outline: none; /* Remove outline on focus */
+  box-shadow: none; /* Remove any box-shadow */
+  cursor: pointer; /* Change cursor to pointer */
+  font: inherit; /* Inherit font properties */
+}
+
+.filter:hover {
+  position: relative;
+  padding: 10px 20px;
+  color: var(--blue);
+  border: 2px solid var(--blue);
+  border-radius: 6px;
+  margin: 0;
+}
 @media (max-width: 480px) {
   .cardBox {
     grid-template-columns: repeat(1, 1fr);
@@ -733,5 +739,3 @@ button.btn:hover {
     left: initial;
   }
 }
-
-

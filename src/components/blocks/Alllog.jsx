@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { CiFilter } from "react-icons/ci";
+
 import axios from "axios";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
@@ -50,12 +52,22 @@ const AllLog = () => {
               Print
             </button>
           </div>
+          <button
+            className="filter"
+            onClick={name}
+            style={{ marginBottom: "15px" }}
+          >
+            Filter
+            <CiFilter className="filter-icon" />
+          </button>
+
           <table>
             <thead>
               <tr>
                 <td>Register Number</td>
                 <td>Name</td>
                 <td>Programme</td>
+                <td>Date</td>
                 <td>In Time</td>
                 <td>Out Time</td>
               </tr>
@@ -66,6 +78,7 @@ const AllLog = () => {
                   <td>{log.regNo}</td>
                   <td>{log.name}</td>
                   <td>{log.programme}</td>
+                  <td>{log.date}</td>
                   <td>{log.in_time}</td>
                   <td>{log.out_time}</td>
                 </tr>

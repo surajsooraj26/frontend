@@ -5,11 +5,9 @@ import { LogContext } from "../contexts/LogContext";
 const Cards = () => {
   const { details, setDetails } = useContext(LogContext);
   useEffect(() => {
-    console.log("Sending request to server...");
     axios
       .post("http://localhost:3500/total")
       .then((response) => {
-        console.log("Received response from server:", response.data);
         setDetails(response.data);
       })
       .catch((err) => {
