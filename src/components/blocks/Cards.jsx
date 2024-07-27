@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import { LogContext } from "../contexts/LogContext";
 
 const Cards = () => {
+  const { details, setDetails } = useContext(LogContext);
+  useEffect(() => {
+    console.log("Sending request to server...");
+    axios
+      .post("http://localhost:3500/total")
+      .then((response) => {
+        console.log("Received response from server:", response.data);
+        setDetails(response.data);
+      })
+      .catch((err) => {
+        console.log("Error fetching data:", err);
+      });
+  }, []); // Adding an empty dependency array to run the effect only once after the initial render
+
   return (
     <div className="cardBox">
       <div className="card">
         <div>
-          <div className="numbers">1,504</div>
-          <div className="cardName">Total Students</div>
+          <div className="numbers">{details.total}</div>
+          <div className="cardName">Total Entries</div>
         </div>
         <div className="iconBx">
           <ion-icon name="People-outline" />
@@ -14,7 +30,7 @@ const Cards = () => {
       </div>
       <div className="card">
         <div>
-          <div className="numbers">80</div>
+          <div className="numbers">{details.current}</div>
           <div className="cardName">Status-In</div>
         </div>
         <div className="iconBx">
@@ -23,7 +39,7 @@ const Cards = () => {
       </div>
       <div className="card">
         <div>
-          <div className="numbers">284</div>
+          <div className="numbers">{details.history}</div>
           <div className="cardName">Status-Out</div>
         </div>
         <div className="iconBx">

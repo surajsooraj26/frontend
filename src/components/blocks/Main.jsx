@@ -5,7 +5,8 @@ import axios from "axios";
 import customer01 from "../../assets/customer01.jpg";
 
 const Main = ({ view }) => {
-  const { setlogData } = useContext(LogContext);
+  const { setlogData, setDetails } = useContext(LogContext);
+
   const [currentView, setCurrentView] = useState(view);
 
   const inputRef = useRef(null);
@@ -26,6 +27,15 @@ const Main = ({ view }) => {
           });
           setlogData(response.data);
           inputRef.current.value = ""; // Clear the input field
+          axios
+            .post("http://localhost:3500/total")
+            .then((response) => {
+              console.log("Received response from server:", response.data);
+              setDetails(response.data);
+            })
+            .catch((err) => {
+              console.log("Error fetching data:", err);
+            });
         } catch (error) {
           console.error("Error:", error);
         }
@@ -45,7 +55,7 @@ const Main = ({ view }) => {
         inputRef.current.removeEventListener("keypress", handleEnterKeyPress);
       }
     };
-  }, [setlogData]);
+  }, [setlogData, setDetails]);
 
   return (
     <div className="topbar">

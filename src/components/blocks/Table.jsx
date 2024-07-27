@@ -4,7 +4,7 @@ import { DataContext } from "../contexts/DataContext";
 
 import React from "react";
 
-const Table = ({onLinkClick}) => {
+const Table = ({ onLinkClick }) => {
   const { logData } = useContext(LogContext);
   const { log, setlog } = useContext(DataContext);
 
@@ -24,12 +24,13 @@ const Table = ({onLinkClick}) => {
       <div className="cardHeader">
         <h2>Recent Entries</h2>
         <a
-            href="#" className="btn"
-            onClick={(e) => {
-              e.preventDefault();
-              onLinkClick("activitylog");
-            }}
-          >
+          href="#"
+          className="btn"
+          onClick={(e) => {
+            e.preventDefault();
+            onLinkClick("activitylog");
+          }}
+        >
           View All
         </a>
       </div>
@@ -50,11 +51,13 @@ const Table = ({onLinkClick}) => {
                   <td>{entry.name}</td>
                   <td>{entry.programme}</td>
                   <td>
-  {entry.out_time && entry.out_time.split(" ").slice(0, 2).join(" ") ||
-   entry.in_time && entry.in_time.split(" ").slice(0, 2).join(" ") || 
-   "no userdata"}
-</td>
-{/* need to change no userdata to alert or new component */}
+                    {(entry.out_time &&
+                      entry.out_time.split(" ").slice(0, 2).join(" ")) ||
+                      (entry.in_time &&
+                        entry.in_time.split(" ").slice(0, 2).join(" ")) ||
+                      " "}
+                  </td>
+                  {/* need to change no userdata to alert or new component */}
                   <td>
                     <span
                       className={
@@ -70,7 +73,7 @@ const Table = ({onLinkClick}) => {
               ))
             ) : (
               <tr>
-                <td colSpan="4">No data available</td>
+                <td colSpan="4"></td>
               </tr>
             )}
           </tbody>

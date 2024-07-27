@@ -19,6 +19,8 @@ const Dashboard = ({ token }) => {
   const [message, setMessage] = useState("");
   const [logData, setlogData] = useState(null);
   const [log, setlog] = useState(null);
+  const [details, setDetails] = useState([]);
+
   const [activeComponent, setActiveComponent] = useState(null);
   const [currentView, setCurrentView] = useState("main"); // State to track current view
 
@@ -48,7 +50,9 @@ const Dashboard = ({ token }) => {
       <Slidebar onLinkClick={(view) => setCurrentView(view)} />
       {currentView === "main" && (
         <div className="main">
-          <LogContext.Provider value={{ logData, setlogData }}>
+          <LogContext.Provider
+            value={{ logData, setlogData, setDetails, details }}
+          >
             <Main />
             <Cards />
             <div className="details">

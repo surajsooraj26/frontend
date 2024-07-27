@@ -35,9 +35,6 @@ const AllLog = () => {
         log.in_time,
         log.out_time,
       ]),
-      bodyStyles: {
-        lineColor: 5,
-      },
     });
 
     doc.save("Activity_Log.pdf");
