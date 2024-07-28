@@ -4,9 +4,12 @@ import { CiFilter } from "react-icons/ci";
 import axios from "axios";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
+import Modal from "react-modal";
+import { CgCloseO } from "react-icons/cg";
 
 const AllLog = () => {
   const [totalLog, setTotalLog] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     axios
@@ -54,7 +57,7 @@ const AllLog = () => {
           </div>
           <button
             className="filter"
-            onClick={name}
+            onClick={() => setVisible(true)}
             style={{ marginBottom: "15px" }}
           >
             Filter
@@ -87,6 +90,48 @@ const AllLog = () => {
           </table>
         </div>
       </div>
+
+      <Modal
+        isOpen={visible}
+        onRequestClose={() => setVisible(false)}
+        contentLabel="Login Modal"
+        className="Modal"
+      >
+        <div className="header">
+          <h2 className="h2">Login</h2>
+          <div className="close-container">
+            <CgCloseO onClick={() => setVisible(false)} className="close" />
+          </div>
+        </div>
+
+        <form>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              placeholder="Username"
+              id="username"
+              name="username"
+              className="form-control"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              placeholder=""
+              id="password"
+              name="password"
+              className="form-control"
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Log In
+          </button>
+        </form>
+      </Modal>
     </div>
   );
 };

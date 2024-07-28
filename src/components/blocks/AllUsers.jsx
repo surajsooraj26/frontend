@@ -4,7 +4,6 @@ import Main from "./Main";
 import customer02 from "../../assets/customer02.jpg";
 
 const AllUsers = () => {
-
   const [studentList, setStudentList] = useState([]);
 
   useEffect(() => {
@@ -26,7 +25,6 @@ const AllUsers = () => {
 
   return (
     <div className="main">
-      <Main />
       <div className="details3">
         <div className="recentOrders">
           <div className="cardHeader">
@@ -47,13 +45,16 @@ const AllUsers = () => {
                 <tr key={index}>
                   <td width="60px">
                     <div className="imgBx">
-                      <img src={"http://localhost:3500" + student.profile} alt="" />
+                      <img
+                        src={"http://localhost:3500" + student.profile}
+                        alt=""
+                      />
                     </div>
                   </td>
                   <td>{student.regNo}</td>
                   <td>{student.name}</td>
                   <td>{student.programme}</td>
-                  <td>{student.duration.start+ "-"+student.duration.end}</td>
+                  <td>{student.duration.start + "-" + student.duration.end}</td>
                 </tr>
               ))}
             </tbody>
