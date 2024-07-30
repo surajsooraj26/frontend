@@ -32,7 +32,7 @@ const Cards = () => {
           <div className="cardName">Status-In</div>
         </div>
         <div className="iconBx">
-          <ion-icon name="cart-outline" />
+          <ion-icon name="person-add-outline" />
         </div>
       </div>
       <div className="card">
@@ -41,7 +41,7 @@ const Cards = () => {
           <div className="cardName">Status-Out</div>
         </div>
         <div className="iconBx">
-          <ion-icon name="chatbubbles-outline" />
+          <ion-icon name="person-remove-outline" />
         </div>
       </div>
     </div>

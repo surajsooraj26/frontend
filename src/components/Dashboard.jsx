@@ -58,8 +58,8 @@ const Dashboard = ({ token }) => {
             <div className="details">
               <DataContext.Provider value={{ log, setlog }}>
                 <Table onLinkClick={(view) => setCurrentView(view)} />
-              </DataContext.Provider>
               <New />
+              </DataContext.Provider>
             </div>
           </LogContext.Provider>
         </div>

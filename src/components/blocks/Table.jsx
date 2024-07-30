@@ -5,7 +5,7 @@ import { DataContext } from "../contexts/DataContext";
 import React from "react";
 
 const Table = ({ onLinkClick }) => {
-  const { logData } = useContext(LogContext);
+  const { logData, setlogData } = useContext(LogContext);
   const { log, setlog } = useContext(DataContext);
 
   useEffect(() => {
@@ -16,8 +16,11 @@ const Table = ({ onLinkClick }) => {
         updatedLog.unshift(logData); // Add logData at the beginning of the array
         return updatedLog;
       });
+
+      // Clear logData after processing
+      setlogData(null);
     }
-  }, [logData, setlog]); // Only depend on logData and setlog
+  }, [logData, setlog, setlogData]);
 
   return (
     <div className="recentOrders">
