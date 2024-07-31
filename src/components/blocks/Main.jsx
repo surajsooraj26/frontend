@@ -1,13 +1,12 @@
-// frontend/src/Main.jsx
 import React, { useEffect, useRef, useContext, useState } from "react";
 import { LogContext } from "../contexts/LogContext";
 import axios from "axios";
 import customer01 from "../../assets/customer01.jpg";
 
-const Main = ({ view }) => {
+const Main = ({ setCurrentView }) => {
   const { setlogData, setDetails } = useContext(LogContext);
 
-  const [currentView, setCurrentView] = useState(view);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -22,20 +21,22 @@ const Main = ({ view }) => {
       if (e.key === "Enter") {
         const regno = inputRef.current.value;
         try {
-          const response = await axios.post("http://localhost:3500/log", {
-            regno,
-          });
+          const response = await axios.post("http://localhost:3500/log", { regno });
           setlogData(response.data);
           inputRef.current.value = ""; // Clear the input field
-          axios
-            .post("http://localhost:3500/total")
-            .then((response) => {
-              console.log("Received response from server:", response.data);
-              setDetails(response.data);
-            })
-            .catch((err) => {
-              console.log("Error fetching data:", err);
-            });
+
+          if (!response.data.exist) {
+            setShowConfirmation(true); // Show the confirmation dialog if response.data.exist is false
+          } else {
+            axios.post("http://localhost:3500/total")
+              .then((response) => {
+                console.log("Received response from server:", response.data);
+                setDetails(response.data);
+              })
+              .catch((err) => {
+                console.log("Error fetching data:", err);
+              });
+          }
         } catch (error) {
           console.error("Error:", error);
         }
@@ -57,20 +58,40 @@ const Main = ({ view }) => {
     };
   }, [setlogData, setDetails]);
 
+  const handleConfirm = () => {
+    setCurrentView('register'); // Set the current view to 'register' if the user confirms
+    setShowConfirmation(false); // Hide the confirmation dialog
+  };
+
+  const handleCancel = () => {
+    setShowConfirmation(false); // Hide the confirmation dialog without changing the view
+  };
+
   return (
-    <div className="topbar">
-      <div className="toggle">
-        <ion-icon name="menu-outline" />
+    <div>
+      <div className="topbar">
+        <div className="toggle">
+          <ion-icon name="menu-outline" />
+        </div>
+        <div className="search">
+          <label>
+            <input ref={inputRef} type="text" placeholder="Search here" />
+            <ion-icon name="search-outline" />
+          </label>
+        </div>
+        <div className="user">
+          {/* <img src={customer01} alt="" /> */}
+        </div>
       </div>
-      <div className="search">
-        <label>
-          <input ref={inputRef} type="text" placeholder="Search here" />
-          <ion-icon name="search-outline" />
-        </label>
-      </div>
-      <div className="user">
-        <img src={customer01} alt="" />
-      </div>
+      {showConfirmation && (
+        <div className="popup-overlay">
+          <div className="confirmation-dialog">
+            <p>Record doesn't exist!</p>
+            <button onClick={handleConfirm}>OK</button>
+            <button onClick={handleCancel}>Cancel</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

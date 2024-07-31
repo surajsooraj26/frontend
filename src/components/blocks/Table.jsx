@@ -9,7 +9,7 @@ const Table = ({ onLinkClick }) => {
   const { log, setlog } = useContext(DataContext);
 
   useEffect(() => {
-    if (logData) {
+    if (logData && logData.exist) {
       setlog((prevLog) => {
         const updatedLog = [...prevLog];
         updatedLog.pop(); // Remove the last element

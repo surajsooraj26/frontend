@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { CiFilter } from "react-icons/ci";
-
 import axios from "axios";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
-import Modal from "react-modal";
-import { CgCloseO } from "react-icons/cg";
 
 const AllLog = () => {
   const [totalLog, setTotalLog] = useState([]);
+  const [isFilterVisible, setFilterVisible] = useState(false);
 
   useEffect(() => {
+    fetchLogs();
+  }, []);
+
+  const fetchLogs = (filters = {}) => {
     axios
-      .post("http://localhost:3500/all_log")
+      .post("http://localhost:3500/all_log", filters)
       .then((response) => {
-        // Ensure the response data is an array
         if (Array.isArray(response.data)) {
           setTotalLog(response.data);
         } else {
@@ -25,13 +26,31 @@ const AllLog = () => {
       .catch((error) => {
         console.error("There was an error fetching the data!", error);
       });
-  }, [setTotalLog]);
+  };
+
+  const filter = (event) => {
+    event.preventDefault();
+    const search = event.target.search.value;
+    const startDate = event.target.startDate.value;
+    const endDate = event.target.endDate.value;
+    const sortOrder = event.target.sortOrder.value;
+
+    const filters = {
+      name: search,
+      startDate: startDate,
+      endDate: endDate,
+      sort: sortOrder === "asc" ? 1 : -1,
+    };
+
+    fetchLogs(filters);
+    setFilterVisible(false);
+  };
 
   const handlePrint = () => {
     const doc = new jsPDF();
 
     doc.autoTable({
-      head: [["Register Number", "Name", "Programme", "Date","In Time", "Out Time"]],
+      head: [["Register Number", "Name", "Programme", "Date", "In Time", "Out Time"]],
       body: totalLog.map((log) => [
         log.regNo,
         log.name,
@@ -57,11 +76,56 @@ const AllLog = () => {
           </div>
           <button
             className="filter"
+            onClick={() => setFilterVisible(!isFilterVisible)}
             style={{ marginBottom: "15px" }}
           >
             Filter
             <CiFilter className="filter-icon" />
           </button>
+
+          {isFilterVisible && (
+            <div className="filter-panel">
+              <h2 className="h2">Filter Options</h2>
+              <form onSubmit={filter}>
+                <div className="form-group">
+                  <label htmlFor="search">Search</label>
+                  <input
+                    type="text"
+                    id="search"
+                    name="search"
+                    className="form-control"
+                    placeholder="Search..."
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="startDate">Start Date</label>
+                  <input type="date" id="startDate" name="startDate" className="form-control" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="endDate">End Date</label>
+                  <input type="date" id="endDate" name="endDate" className="form-control" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="sortOrder">Sort Order</label>
+                  <select id="sortOrder" name="sortOrder" className="form-control">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                  </select>
+                </div>
+                <button type="submit" className="btn btn-secondary">
+                  Filter
+                </button>
+               
+                <button
+                  type="button"
+                  onClick={() => setFilterVisible(false)}
+                  className="btn btn-secondary"
+                >
+                  Close
+                </button>
+              </form>
+            </div>
+          )}
 
           <table>
             <thead>

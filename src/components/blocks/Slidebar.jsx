@@ -34,7 +34,7 @@ const Slidebar = ({ onLinkClick }) => {
           >
             {" "}
             <span className="icon">
-              <ion-icon name="chatbubble-outline" />
+              <ion-icon name="list-outline" />
             </span>
             <span className="title">Activity log</span>
           </a>
@@ -48,7 +48,7 @@ const Slidebar = ({ onLinkClick }) => {
             }}
           >
             <span className="icon">
-              <ion-icon name="people-outline" />
+              <ion-icon name="person-outline" />
             </span>
             <span className="title">Add User</span>
           </a>
@@ -64,12 +64,12 @@ const Slidebar = ({ onLinkClick }) => {
           >
             {" "}
             <span className="icon">
-              <ion-icon name="help-outline" />
+              <ion-icon name="people-outline" />
             </span>
             <span className="title">All Users</span>
           </a>
         </li>
-        <li>
+        {/* <li>
           <a href="#">
             <span className="icon">
               <ion-icon name="settings-outline" />
@@ -92,7 +92,7 @@ const Slidebar = ({ onLinkClick }) => {
             </span>
             <span className="title">Sign Out</span>
           </a>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

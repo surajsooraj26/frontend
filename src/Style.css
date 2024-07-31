@@ -300,8 +300,14 @@ body {
   color: var(--white);
   border-radius: 6px;
   margin: 0;
-  padding: 0;
 }
+
+.cardHeader .btn:hover {
+  color: var(--blue);
+  background-color: white; /* White background on hover */
+  border: 1px solid var(--blue); /* Add border on hover for better visibility */
+}
+
 
 .details table {
   width: 100%;
@@ -739,3 +745,69 @@ button.btn:hover {
     left: initial;
   }
 }
+
+
+.filter-panel {
+  position: absolute;
+  top: 5rem;
+  left: 1rem;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  width: 400px;
+  z-index: 1000;
+  border-radius: 10px;
+}
+
+.filter-panel h2 {
+  margin-top: 0;
+}
+
+.filter-panel .form-group {
+  margin-bottom: 1rem;
+}
+
+.filter-panel button {
+  width: 100%;
+  margin-bottom: 1rem;
+
+}
+
+
+
+/* CSS for the confirmation dialog */
+.confirmation-dialog {
+  position: fixed;
+  top: 20px; /* Distance from the top of the screen */
+  left: 50%;
+  transform: translateX(-50%); /* Center the dialog horizontally */
+  background-color: #fff; /* White background */
+  padding: 15px 25px; /* Padding around the content */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for better visibility */
+  z-index: 1000; /* Ensure it's on top of other content */
+  max-width: 400px; /* Maximum width of the dialog */
+  width: 100%; /* Full width within max-width */
+  text-align: center; /* Center text */
+}
+
+.confirmation-dialog p {
+  margin: 0 0 15px; /* Margin for the message */
+}
+
+.confirmation-dialog button {
+  background-color: #6c63ff; /* Button background color */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmation-dialog button:hover {
+  color:var(--blue);
+  background-color:white; /* Darker shade on hover */
+}
+
