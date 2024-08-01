@@ -30,13 +30,15 @@ const AllLog = () => {
 
   const filter = (event) => {
     event.preventDefault();
+    const filterType = event.target.select.value;
     const search = event.target.search.value;
     const startDate = event.target.startDate.value;
     const endDate = event.target.endDate.value;
     const sortOrder = event.target.sortOrder.value;
 
     const filters = {
-      name: search,
+      filterType: filterType,
+      search: search,
       startDate: startDate,
       endDate: endDate,
       sort: sortOrder === "asc" ? 1 : -1,
@@ -87,53 +89,49 @@ const AllLog = () => {
             <div className="filter-panel">
               <h2 className="h2">Filter Options</h2>
               <form onSubmit={filter}>
-               
-              <div className="form-group1">
-                  <label htmlFor="sortOrder" className="form-label">Search</label>
-                  <select id="sortOrder" name="sortOrder" className="form-control small-select">
-                    <option value="asc">Register Number</option>
-                    <option value="desc">Name</option>
-                    <option value="desc">Programme</option>
-                  </select>
-                </div>
-               
-                <div className="form-group">
-                  
-                  <input
-                    type="text"
-                    id="search"
-                    name="search"
-                    className="form-control"
-                    placeholder="Search..."
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="startDate">Start Date</label>
-                  <input type="date" id="startDate" name="startDate" className="form-control" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="endDate">End Date</label>
-                  <input type="date" id="endDate" name="endDate" className="form-control" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="sortOrder">Sort Order</label>
-                  <select id="sortOrder" name="sortOrder" className="form-control">
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
-                  </select>
-                </div>
-                <button type="submit" className="btn btn-secondary">
-                  Filter
-                </button>
-               
-                <button
-                  type="button"
-                  onClick={() => setFilterVisible(false)}
-                  className="btn btn-secondary"
-                >
-                  Close
-                </button>
-              </form>
+      <div className="form-group1">
+        <label htmlFor="select" className="form-label">Search</label>
+        <select id="select" name="select" className="form-control1">
+          <option value="regNo">Register Number</option>
+          <option value="name">Name</option>
+          <option value="programme">Programme</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <input
+          type="text"
+          id="search"
+          name="search"
+          className="form-control"
+          placeholder="Search..."
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="startDate" className="form-label">Start Date</label>
+        <input type="date" id="startDate" name="startDate" className="form-control" />
+      </div>
+      <div className="form-group">
+        <label htmlFor="endDate" className="form-label">End Date</label>
+        <input type="date" id="endDate" name="endDate" className="form-control" />
+      </div>
+      <div className="form-group">
+        <label htmlFor="sortOrder" className="form-label">Sort Order</label>
+        <select id="sortOrder" name="sortOrder" className="form-control">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
+      <button type="submit" className="btn btn-secondary">
+        Filter
+      </button>
+      <button
+        type="button"
+        onClick={() => setFilterVisible(false)}
+        className="btn btn-secondary"
+      >
+        Close
+      </button>
+    </form>
             </div>
           )}
 

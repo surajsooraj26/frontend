@@ -816,22 +816,30 @@ button.btn:hover {
   background-color:white; /* Darker shade on hover */
 }
 
-.form-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+
+
+
+
+
+
+.filter-panel .form-group1 {
+  margin-bottom: 1rem;
 }
 
-.form-label {
-  margin-right: 10px;
-  white-space: nowrap; /* Prevent the label from breaking into multiple lines */
+.filter-panel .form-control1 {
+  width: 50%;
+  height: 30px; /* Adjust the height as necessary */
+  padding: 5px; /* Adjust the padding as necessary */
+  font-size: 12px;
+
+ 
 }
+.filter-panel button {
+  width: 100%;
+  margin-bottom: 1rem;
 
-.small-select {
-  width: 150px; /* Adjust the width as needed */
-  height: 30px; /* Adjust the height as needed */
-  font-size: 14px; /* Adjust the font size as needed */
-  padding: 5px;
 }
-
-
+.small-select1 {
+  width: 150px;
+  height: 20px; /* Adjust the width as needed */
+}
