@@ -41,7 +41,7 @@ const AllLog = () => {
       search: search,
       startDate: startDate,
       endDate: endDate,
-      sort: sortOrder === "asc" ? 1 : -1,
+      sort: sortOrder === "asc" ? 1 : sortOrder === "desc" ? -1 : undefined,
     };
 
     fetchLogs(filters);

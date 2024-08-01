@@ -660,7 +660,8 @@ button.btn:hover {
 }
 
 .btn-primary:hover {
-  background-color: #6c63ff;
+  background-color: var(--white);
+  color:#6c63ff;
 }
 
 /* ====================== Responsive Design ========================== */

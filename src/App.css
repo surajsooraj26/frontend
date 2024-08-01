@@ -500,6 +500,16 @@ nav {
   font-weight: 500;
   cursor: pointer;
 }
+.Modal .btn-primary:hover {
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid #6c63ff;
+  border-radius: 6px;
+  color: #6c63ff;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
 
 .Modal .btn-secondary {
   padding: 10px 20px;
