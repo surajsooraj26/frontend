@@ -616,6 +616,7 @@ body {
   margin-bottom: 20px; /* Creates space between each form group */
 }
 
+
 label {
   font-weight: 600;
   color: var(--blue);
@@ -773,6 +774,10 @@ button.btn:hover {
   margin-bottom: 1rem;
 
 }
+.small-select {
+  width: 150px;
+  height: 20px; /* Adjust the width as needed */
+}
 
 
 
@@ -810,4 +815,23 @@ button.btn:hover {
   color:var(--blue);
   background-color:white; /* Darker shade on hover */
 }
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-label {
+  margin-right: 10px;
+  white-space: nowrap; /* Prevent the label from breaking into multiple lines */
+}
+
+.small-select {
+  width: 150px; /* Adjust the width as needed */
+  height: 30px; /* Adjust the height as needed */
+  font-size: 14px; /* Adjust the font size as needed */
+  padding: 5px;
+}
+
 

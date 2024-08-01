@@ -87,8 +87,18 @@ const AllLog = () => {
             <div className="filter-panel">
               <h2 className="h2">Filter Options</h2>
               <form onSubmit={filter}>
+               
+              <div className="form-group1">
+                  <label htmlFor="sortOrder" className="form-label">Search</label>
+                  <select id="sortOrder" name="sortOrder" className="form-control small-select">
+                    <option value="asc">Register Number</option>
+                    <option value="desc">Name</option>
+                    <option value="desc">Programme</option>
+                  </select>
+                </div>
+               
                 <div className="form-group">
-                  <label htmlFor="search">Search</label>
+                  
                   <input
                     type="text"
                     id="search"
