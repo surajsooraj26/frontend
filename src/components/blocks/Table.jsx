@@ -25,7 +25,7 @@ const Table = ({ onLinkClick }) => {
   return (
     <div className="recentOrders">
       <div className="cardHeader">
-        <h2>Recent Entries</h2>
+        <h2>Current Status</h2>
         <a
           href="#"
           className="btn"
