@@ -92,6 +92,7 @@ const AllLog = () => {
       <div className="form-group1">
         <label htmlFor="select" className="form-label">Search</label>
         <select id="select" name="select" className="form-control1">
+        <option value=""></option>
           <option value="regNo">Register Number</option>
           <option value="name">Name</option>
           <option value="programme">Programme</option>
@@ -117,6 +118,7 @@ const AllLog = () => {
       <div className="form-group">
         <label htmlFor="sortOrder" className="form-label">Sort Order</label>
         <select id="sortOrder" name="sortOrder" className="form-control">
+        <option value="desc"></option>
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
@@ -134,7 +136,6 @@ const AllLog = () => {
     </form>
             </div>
           )}
-
           <table>
             <thead>
               <tr>
