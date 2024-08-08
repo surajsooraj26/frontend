@@ -7,6 +7,7 @@ import "jspdf-autotable";
 const AllLog = () => {
   const [totalLog, setTotalLog] = useState([]);
   const [isFilterVisible, setFilterVisible] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
     fetchLogs();
@@ -66,6 +67,10 @@ const AllLog = () => {
     doc.save("Activity_Log.pdf");
   };
 
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
   return (
     <div className="main">
       <div className="details3">
@@ -89,53 +94,64 @@ const AllLog = () => {
             <div className="filter-panel">
               <h2 className="h2">Filter Options</h2>
               <form onSubmit={filter}>
-      <div className="form-group1">
-        <label htmlFor="select" className="form-label">Search</label>
-        <select id="select" name="select" className="form-control1">
-        <option value=""></option>
-          <option value="regNo">Register Number</option>
-          <option value="name">Name</option>
-          <option value="programme">Programme</option>
-        </select>
-      </div>
-      <div className="form-group">
-        <input
-          type="text"
-          id="search"
-          name="search"
-          className="form-control"
-          placeholder="Search..."
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="startDate" className="form-label">Start Date</label>
-        <input type="date" id="startDate" name="startDate" className="form-control" />
-      </div>
-      <div className="form-group">
-        <label htmlFor="endDate" className="form-label">End Date</label>
-        <input type="date" id="endDate" name="endDate" className="form-control" />
-      </div>
-      <div className="form-group">
-        <label htmlFor="sortOrder" className="form-label">Sort Order</label>
-        <select id="sortOrder" name="sortOrder" className="form-control">
-        <option value="desc"></option>
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
-      </div>
-      <button type="submit" className="btn btn-secondary">
-        Filter
-      </button>
-      <button
-        type="button"
-        onClick={() => setFilterVisible(false)}
-        className="btn btn-secondary"
-      >
-        Close
-      </button>
-    </form>
+                <div className="form-group1">
+                  <label htmlFor="select" className="form-label">Search</label>
+                  <select id="select" name="select" className="form-control1" onChange={handleSelectChange}>
+                    <option value=""></option>
+                    <option value="regNo">Register Number</option>
+                    <option value="name">Name</option>
+                    <option value="programme">Programme</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  {selectedOption === 'programme' ? (
+                    <select id="search" name="search" className="form-control">
+                      <option value="MSc Computer Science">MSc Computer Science</option>
+                      <option value="MSc Computer Science(AI)">MSc Computer Science(AI)</option>
+                      <option value="MSc Computer Science(ML)">MSc Computer Science(ML)</option>
+                      <option value="M.tech">M.tech</option>
+                      {/* Add more options as needed */}
+                    </select>
+                  ) : (
+                    <input
+                      type="text"
+                      id="search"
+                      name="search"
+                      className="form-control"
+                      placeholder="Search..."
+                    />
+                  )}
+                </div>
+                <div className="form-group">
+                  <label htmlFor="startDate" className="form-label">Start Date</label>
+                  <input type="date" id="startDate" name="startDate" className="form-control" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="endDate" className="form-label">End Date</label>
+                  <input type="date" id="endDate" name="endDate" className="form-control" />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="sortOrder" className="form-label">Sort Order</label>
+                  <select id="sortOrder" name="sortOrder" className="form-control">
+                    <option value="desc"></option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                  </select>
+                </div>
+                <button type="submit" className="btn btn-secondary">
+                  Filter
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFilterVisible(false)}
+                  className="btn btn-secondary"
+                >
+                  Close
+                </button>
+              </form>
             </div>
           )}
+
           <table>
             <thead>
               <tr>

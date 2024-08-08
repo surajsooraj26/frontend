@@ -1,6 +1,10 @@
 import React from "react";
 
 const Slidebar = ({ onLinkClick }) => {
+  function signout() {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
   return (
     <div className="navigation">
       <ul>
@@ -69,7 +73,7 @@ const Slidebar = ({ onLinkClick }) => {
             <span className="title">All Users</span>
           </a>
         </li>
-        {/* <li>
+        <li>
           <a href="#">
             <span className="icon">
               <ion-icon name="settings-outline" />
@@ -86,13 +90,16 @@ const Slidebar = ({ onLinkClick }) => {
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" onClick={(e) => {
+              e.preventDefault();
+              signout();
+            }}>
             <span className="icon">
               <ion-icon name="log-out-outline" />
             </span>
             <span className="title">Sign Out</span>
           </a>
-        </li> */}
+        </li>
       </ul>
     </div>
   );
