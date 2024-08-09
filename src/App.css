@@ -539,6 +539,7 @@ nav {
   position: absolute;
   right: 0.5rem; /* Adjust this value as needed to position the icon */
   top: 0rem;
+  size: 50px;
 }
 
 .close {
@@ -567,7 +568,7 @@ nav {
 
 .modalContent {
   background-color: #fefefe;
-  padding: 20px;
+  padding: 50px;
   border: 1px solid #6c63ff;
   width: 80%;
   height: 80%;
@@ -582,13 +583,54 @@ nav {
 
 .close-container1 {
   position: absolute;
+  left: 0.8rem; /* Position from the right */
+  top: 0.5rem; /* Adjusted top position */
+  cursor: pointer;
+  color: #6c63ff; 
+  width: 25px;
+  height: 35px;/* Remove or unset bottom property if it's not needed */
+}
+.option {
+  position: absolute;
   right: 0.8rem; /* Position from the right */
   top: 1rem; /* Adjusted top position */
-  bottom: unset;
-  color: #6c63ff; /* Remove or unset bottom property if it's not needed */
+  size: 30px;
+  color: #6c63ff;
+  cursor: pointer;
+} /* Remove or unset bottom property if it's not needed */
+
+.react-icons {
+  size: 3rem;
 }
 
 .selected_profile{
   width: 200px;
-  height:250px
+  height:250px;
+  border: 1px solid #6c63ff;
+}
+
+.options-menu {
+  position: absolute;
+  color: #6c63ff;
+  right: 0.8rem;
+  background-color: white;
+  border: 1px solid #6c63ff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 100px;
+  border-radius: 10px;
+}
+
+.option-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.option-item:hover {
+  background-color: #6c63ff;
+  color: white;
+}
+.image-class{
+  width: 200px;
+  height: 250px;
 }
