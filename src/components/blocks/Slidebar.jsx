@@ -74,21 +74,25 @@ const Slidebar = ({ onLinkClick }) => {
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" onClick={(e) => {
+              e.preventDefault();
+              signout();
+            }}
+          >
             <span className="icon">
               <ion-icon name="settings-outline" />
             </span>
             <span className="title">Settings</span>
           </a>
         </li>
-        <li>
+        {/* <li>
           <a href="#">
             <span className="icon">
               <ion-icon name="lock-closed-outline" />
             </span>
             <span className="title">Password</span>
           </a>
-        </li>
+        </li> */}
         <li>
           <a href="#" onClick={(e) => {
               e.preventDefault();
