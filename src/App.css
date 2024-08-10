@@ -589,6 +589,11 @@ nav {
   color: #6c63ff; 
   width: 25px;
   height: 35px;/* Remove or unset bottom property if it's not needed */
+  cursor: pointer;
+
+}
+.close-container1:hover{
+  cursor: pointer;
 }
 .option {
   position: absolute;
