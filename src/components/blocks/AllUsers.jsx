@@ -114,13 +114,34 @@ const handleSelectChange = (e) => {
                   )}
                 </div>
                 <div className="form-group">
-                  <label htmlFor="startDate" className="form-label">Start Date</label>
-                  <input type="date" id="startDate" name="startDate" className="form-control" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="endDate" className="form-label">End Date</label>
-                  <input type="date" id="endDate" name="endDate" className="form-control" />
-                </div>
+  <label htmlFor="startYear" className="form-label">Start Year</label>
+  <select id="startYear" name="startYear" className="form-control">
+    <option value="">Select Year</option>
+    {Array.from({ length: 100 }, (_, i) => {
+      const year = new Date().getFullYear() - i;
+      return (
+        <option key={year} value={year}>
+          {year}
+        </option>
+      );
+    })}
+  </select>
+</div>
+
+<div className="form-group">
+  <label htmlFor="startYear" className="form-label">End Year</label>
+  <select id="startYear" name="startYear" className="form-control">
+    <option value="">Select Year</option>
+    {Array.from({ length: 100 }, (_, i) => {
+      const year = new Date().getFullYear() - i;
+      return (
+        <option key={year} value={year}>
+          {year}
+        </option>
+      );
+    })}
+  </select>
+</div>
                 <div className="form-group">
                   <label htmlFor="sortOrder" className="form-label">Sort Order</label>
                   <select id="sortOrder" name="sortOrder" className="form-control">
