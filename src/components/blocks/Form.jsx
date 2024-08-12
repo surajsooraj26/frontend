@@ -129,6 +129,30 @@ const Form = () => {
               ref={inputRefs.photograph}
               required
             />
+                <div className="form-group">
+              <label htmlFor="course">Role</label>
+              <select
+                id="role"
+                name="role"
+                className="form-control"
+                value={formData.programme}
+                onChange={handleChange}
+                ref={inputRefs.programme}
+                required
+              >
+                <option value="">Select Role</option>
+                <option value="Faculty">
+                Faculty
+                </option>
+                <option value="Student">
+                Student
+                </option>
+                <option value="Staff">
+                Staff
+                </option>
+            
+              </select>
+            </div>
             <div className="form-group">
               <label htmlFor="course">Course</label>
               <select
