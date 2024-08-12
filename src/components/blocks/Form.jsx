@@ -5,16 +5,19 @@ const Form = () => {
   const [formData, setFormData] = useState({
     regNo: "",
     name: "",
+    role: "", // Add this to track the role
     programme: "",
     duration: { start: "", end: "" },
     gender: "",
   });
   const [file, setFile] = useState(null);
+  const [showCourse, setShowCourse] = useState(false); // State to manage the visibility of the course field
 
   // Create refs for each input field
   const inputRefs = {
     regNo: useRef(null),
     name: useRef(null),
+    role: useRef(null), // Add this ref for role
     programme: useRef(null),
     durationStart: useRef(null),
     durationEnd: useRef(null),
@@ -40,6 +43,9 @@ const Form = () => {
         ...prevData,
         [name]: value,
       }));
+      if (name === "role") {
+        setShowCourse(value === "Student");
+      }
     }
   };
 
@@ -48,7 +54,13 @@ const Form = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("regNo", formData.regNo);
     formDataToSend.append("name", formData.name);
-    formDataToSend.append("programme", formData.programme);
+    if(formData.programme){
+
+      formDataToSend.append("programme", formData.programme);
+    }else{
+
+      formDataToSend.append("role", formData.role); // Include role
+    }
     formDataToSend.append("duration[start]", formData.duration.start);
     formDataToSend.append("duration[end]", formData.duration.end);
     formDataToSend.append("gender", formData.gender);
@@ -76,11 +88,13 @@ const Form = () => {
       setFormData({
         regNo: "",
         name: "",
+        role: "",
         programme: "",
         duration: { start: "", end: "" },
         gender: "",
       });
       setFile(null);
+      setShowCourse(false); // Reset the course visibility
     } catch (error) {
       console.error("There was an error submitting the form!", error);
     }
@@ -90,11 +104,11 @@ const Form = () => {
     <div className="details1">
       <div className="recentOrders">
         <div className="cardHeader">
-          <h2>Register Student</h2>
+          <h2>Register User</h2>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="register">Register number</label>
+            <label htmlFor="register">Register User</label>
             <input
               type="text"
               placeholder="Register Number"
@@ -129,54 +143,48 @@ const Form = () => {
               ref={inputRefs.photograph}
               required
             />
-                <div className="form-group">
-              <label htmlFor="course">Role</label>
+            <div className="form-group">
+              <label htmlFor="role">Role</label>
               <select
                 id="role"
                 name="role"
                 className="form-control"
-                value={formData.programme}
+                value={formData.role}
                 onChange={handleChange}
-                ref={inputRefs.programme}
+                ref={inputRefs.role}
                 required
               >
-                <option value="">Select Role</option>
-                <option value="Faculty">
-                Faculty
-                </option>
-                <option value="Student">
-                Student
-                </option>
-                <option value="Staff">
-                Staff
-                </option>
-            
+                <option value="">-- Select --</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Student">Student</option>
               </select>
             </div>
-            <div className="form-group">
-              <label htmlFor="course">Course</label>
-              <select
-                id="course"
-                name="programme"
-                className="form-control"
-                value={formData.programme}
-                onChange={handleChange}
-                ref={inputRefs.programme}
-                required
-              >
-                <option value="">Select Course</option>
-                <option value="MSc Computer Science">
-                  MSc Computer Science
-                </option>
-                <option value="MSc Computer Science(AI)">
-                  MSc Computer Science(AI)
-                </option>
-                <option value="MSc Computer Science(ML)">
-                  MSc Computer Science(ML)
-                </option>
-                <option value="M.tech">M.tech</option>
-              </select>
-            </div>
+            {showCourse && (
+              <div className="form-group">
+                <label htmlFor="course">Course</label>
+                <select
+                  id="course"
+                  name="programme"
+                  className="form-control"
+                  value={formData.programme}
+                  onChange={handleChange}
+                  ref={inputRefs.programme}
+                  required
+                >
+                  <option value="">-- Select --</option>
+                  <option value="MSc Computer Science">
+                    MSc Computer Science
+                  </option>
+                  <option value="MSc Computer Science(AI)">
+                    MSc Computer Science(AI)
+                  </option>
+                  <option value="MSc Computer Science(ML)">
+                    MSc Computer Science(ML)
+                  </option>
+                  <option value="M.tech">M.tech</option>
+                </select>
+              </div>
+            )}
             <div className="form-group">
               <label htmlFor="starting">Starting year</label>
               <input
@@ -218,7 +226,7 @@ const Form = () => {
                   ref={inputRefs.gender}
                   required
                 >
-                  <option value="">Select Gender</option>
+                  <option value="">-- Select --</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
