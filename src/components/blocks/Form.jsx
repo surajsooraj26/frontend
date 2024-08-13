@@ -54,12 +54,11 @@ const Form = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("regNo", formData.regNo);
     formDataToSend.append("name", formData.name);
+    formDataToSend.append("role", formData.role); // Include role
     if(formData.programme){
-
       formDataToSend.append("programme", formData.programme);
     }else{
-
-      formDataToSend.append("role", formData.role); // Include role
+      formDataToSend.append("programme", formData.role);
     }
     formDataToSend.append("duration[start]", formData.duration.start);
     formDataToSend.append("duration[end]", formData.duration.end);
