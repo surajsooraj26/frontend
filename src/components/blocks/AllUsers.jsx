@@ -13,6 +13,8 @@ const AllUsers = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [isFilterVisible, setFilterVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
+  const [editOption, setEditOption] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
 
   const optionsRef = useRef(null);
@@ -48,8 +50,18 @@ const AllUsers = () => {
   };
 
   const closeModal = () => {
+    setEditOption(false)
     setSelectedStudent(null);
   };
+  const edit = () => {
+    setEditOption(true)
+    setShowOptions(prevState => !prevState);
+  };
+  const del = () => {
+    setShowOptions(prevState => !prevState);
+  };
+
+
 
   const toggleOptions = () => {
     setShowOptions(prevState => !prevState);
@@ -210,13 +222,16 @@ const handleSelectChange = (e) => {
                 </div>
                 {showOptions && (
                 <div className="options-menu">
-                    <div className="option-item">Edit</div>
-                    <div className="option-item">Disable</div>
-                    <div className="option-item">Delete</div>
+                    <div className="option-item1" onClick={edit}>Edit</div>
+                    <div className="option-item" onClick={del}>Disable</div>
+                    <div className="option-item2">Delete</div>
                 </div>
             )}
             </div>
-              <table>
+                  {editOption ? (
+                
+                <table>
+
                 <tr>
                   <td rowSpan={4} width={230}>
                 <div className="selected_profile">
@@ -227,11 +242,83 @@ const handleSelectChange = (e) => {
                   />
                 </div>
                   </td>
+              <td width={210}>
+              <label>Name</label>
+              <input
+                    type="text"
+                    defaultValue={selectedStudent.name}
+                    autoFocus
+                />
+                  </td>
+                  <td> </td>
+                  <td>
+                    <label>Register Number</label>
+                  <input
+                    type="text"
+                    defaultValue={selectedStudent.regNo}
+                />
+
+                  </td>
+                </tr>
+                <tr>
                   <td width={210}>
+                  <label>Programme</label>
+                    <input 
+                    type="text"
+                    defaultValue={selectedStudent.programme}
+                    />
+                  </td>
+                  <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  <td>
+                    <label>Starting</label>
+                    <input
+                    type="number"
+                    defaultValue={selectedStudent.duration.start}
+                      />
+                  </td>
+                  <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  <td>
+                    <label>Ending</label>
+                    <input
+                    type="number"
+                    defaultValue={selectedStudent.duration.end}
+                      />
+                  </td>
+                </tr>
+             <tr>
+               <td>
+                <select
+                name="gender"
+                defaultValue={selectedStudent.gender}>
+                   <option value="">-- Select --</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+                
+                
+                </td>
+                <td> </td>
+
+
+                </tr>
+                </table>
+            ) : (
+              <table>
+
+                <tr>
+                  <td rowSpan={4} width={230}>
+                <div className="selected_profile">
+                  <img  className="image-class"
+                    src={"http://localhost:3500" + selectedStudent.profile}
+                    alt=""
+                
+                  />
+                </div>
+                  </td>
+              <td width={210}>
 
                 <p> {selectedStudent.name}</p>
                   </td>
-
                   <td>
                 <p> {selectedStudent.regNo}</p>
 
@@ -252,9 +339,12 @@ const handleSelectChange = (e) => {
                 <p>{selectedStudent.gender}</p>
                 </td>
                 
+
+
                 </tr>
                 </table>
-                {/* Add more details as needed */}
+            )}
+            
               </div>
             </div>
           
