@@ -12,14 +12,14 @@ const Footer = () => {
         <div className="footer-logo-container">
           <img src={Logo} alt="" />
         </div>
-        <div className="footer-icons">
+        {/* <div className="footer-icons">
           <BsTwitter />
           <SiLinkedin />
           <BsYoutube />
           <FaFacebookF />
-        </div>
+        </div> */}
       </div>
-      <div className="footer-section-two">
+      {/* <div className="footer-section-two">
         <div className="footer-section-columns">
           <span>About</span>
           <span>Help</span>
@@ -33,7 +33,7 @@ const Footer = () => {
           <span>Terms & Conditions</span>
           <span>Privacy Policy</span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

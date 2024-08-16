@@ -172,6 +172,7 @@ const AllLog = () => {
                   <td>{log.date}</td>
                   <td>{log.in_time}</td>
                   <td>{log.out_time}</td>
+                  
                 </tr>
               ))}
             </tbody>

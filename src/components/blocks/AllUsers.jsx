@@ -5,7 +5,7 @@ import { CiFilter } from "react-icons/ci";
 import { SlOptionsVertical } from "react-icons/sl";
 
 
-// import ".src/components/App.css"; // Add your CSS here
+
 
 const AllUsers = () => {
   const [studentList, setStudentList] = useState([]);
@@ -58,7 +58,7 @@ const AllUsers = () => {
     setShowOptions(prevState => !prevState);
   };
   const del = () => {
-    setShowOptions(prevState => !prevState);
+    setConfirmDelete(true);
   };
 
 
@@ -94,6 +94,9 @@ const handleSelectChange = (e) => {
             <CiFilter className="filter-icon" />
           </button>
           {isFilterVisible && (
+
+
+
             <div className="filter-panel">
               <h2 className="h2">Filter Options</h2>
               <form>
@@ -223,8 +226,8 @@ const handleSelectChange = (e) => {
                 {showOptions && (
                 <div className="options-menu">
                     <div className="option-item1" onClick={edit}>Edit</div>
-                    <div className="option-item" onClick={del}>Disable</div>
-                    <div className="option-item2">Delete</div>
+                    <div className="option-item" >Disable</div>
+                    <div className="option-item2"onClick={del}>Delete</div>
                 </div>
             )}
             </div>
@@ -284,6 +287,7 @@ const handleSelectChange = (e) => {
                     defaultValue={selectedStudent.duration.end}
                       />
                   </td>
+                 
                 </tr>
              <tr>
                <td>
@@ -297,7 +301,9 @@ const handleSelectChange = (e) => {
                 
                 
                 </td>
-                <td> </td>
+                <td>&nbsp; </td> <td> <button type="submit" className="btn btn-primary">
+              Save
+            </button></td>
 
 
                 </tr>
@@ -338,10 +344,8 @@ const handleSelectChange = (e) => {
                <td>
                 <p>{selectedStudent.gender}</p>
                 </td>
-                
-
-
                 </tr>
+
                 </table>
             )}
             
@@ -350,6 +354,15 @@ const handleSelectChange = (e) => {
           
         )}
       </div>
+      {confirmDelete && (
+        <div className="popup-overlay">
+          <div className="confirmation-dialog">
+            <p>Are you sure you want to delete this user?</p>
+            <button>OK</button>
+            <button>Cancel</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
