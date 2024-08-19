@@ -50,8 +50,9 @@ const AllUsers = () => {
   };
 
   const closeModal = () => {
-    setEditOption(false)
+    setEditOption(false);
     setSelectedStudent(null);
+    setConfirmDelete(false);
   };
   const edit = () => {
     setEditOption(true)
@@ -76,6 +77,27 @@ const handleSelectChange = (e) => {
   setSelectedOption(e.target.value);
 };
 
+const handleCancel = () => {
+  setConfirmDelete(false); 
+};
+
+const deleteRecord = async (regNo) => {
+  try {
+    // Send a DELETE request to the server with the regNo
+    await axios.get(`http://localhost:3500/deleteUser/${regNo}`);
+
+    // Set the confirm delete state to false to close the confirmation dialog
+    setConfirmDelete(false);
+
+    // Optionally, refresh the data or handle UI updates after deletion
+    console.log("Record deleted successfully");
+
+    // You might want to update the UI here, like refreshing the list of students or showing a success message
+  } catch (error) {
+    console.error("There was an error deleting the record:", error);
+    // Optionally, handle error scenarios like showing an error message to the user
+  }
+};
 
   return (
     <div className="main">
@@ -358,8 +380,8 @@ const handleSelectChange = (e) => {
         <div className="popup-overlay">
           <div className="confirmation-dialog">
             <p>Are you sure you want to delete this user?</p>
-            <button>OK</button>
-            <button>Cancel</button>
+            <button onClick={deleteRecord(selectedStudent.regNo)}>OK</button>
+            <button onClick={handleCancel}>Cancel</button>
           </div>
         </div>
       )}
