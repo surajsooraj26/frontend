@@ -249,7 +249,7 @@ const deleteRecord = async (regNo) => {
                 <div className="options-menu">
                     <div className="option-item1" onClick={edit}>Edit</div>
                     <div className="option-item" >Disable</div>
-                    <div className="option-item2"onClick={del}>Delete</div>
+                    <div className="option-item2"onClick={del}>Disable</div>
                 </div>
             )}
             </div>
