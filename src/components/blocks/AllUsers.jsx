@@ -15,7 +15,7 @@ const AllUsers = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [editOption, setEditOption] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
-
+  
 
   const optionsRef = useRef(null);
 
@@ -79,6 +79,34 @@ const handleSelectChange = (e) => {
 
 const handleCancel = () => {
   setConfirmDelete(false); 
+};
+
+const handleSubmit = async (event) => {
+  event.preventDefault(); // Prevent the form from refreshing the page
+
+  const formData = {
+    name: event.target[0].value,
+    regNo: event.target[1].value,
+    programme: event.target[2].value,
+    duration: {
+      start: event.target[3].value,
+      end: event.target[4].value,
+    },
+    gender: event.target[5].value,
+  };
+
+  try {
+    const response = await axios.put('http://localhost:3500/editUser', formData);
+
+    // Assuming the response contains the updated student object
+    //setStudentData(response.data.updatedStudent);
+    setSelectedStudent(response.data.updatedStudent); // Update the selectedStudent state
+    console.log('Data updated successfully:', response.data);
+
+    setEditOption(false)
+  } catch (error) {
+    console.error('Error updating data:', error);
+  }
 };
 
 const deleteRecord = async (regNo) => {
@@ -254,7 +282,8 @@ const deleteRecord = async (regNo) => {
             )}
             </div>
                   {editOption ? (
-                
+                <form onSubmit={handleSubmit}>
+
                 <table>
 
                 <tr>
@@ -330,6 +359,7 @@ const deleteRecord = async (regNo) => {
 
                 </tr>
                 </table>
+                </form>
             ) : (
               <table>
 
