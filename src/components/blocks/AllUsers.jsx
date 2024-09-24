@@ -99,8 +99,16 @@ const handleSubmit = async (event) => {
     const response = await axios.put('http://localhost:3500/editUser', formData);
 
     // Assuming the response contains the updated student object
-    //setStudentData(response.data.updatedStudent);
+    const updatedStudent = response.data.updatedStudent;
+
     setSelectedStudent(response.data.updatedStudent); // Update the selectedStudent state
+    const updatedStudentList = studentList.map((student) =>
+      student.regNo === updatedStudent.regNo ? updatedStudent : student
+    );
+
+    // Update the state with the modified list
+    setStudentList(updatedStudentList);
+
     console.log('Data updated successfully:', response.data);
 
     setEditOption(false)
