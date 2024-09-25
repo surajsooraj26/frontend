@@ -58,10 +58,10 @@ const AllUsers = () => {
     setEditOption(true)
     setShowOptions(prevState => !prevState);
   };
-  const del = () => {
-    setConfirmDelete(true);
-  };
-
+ 
+const deleteConfirm = () =>{
+  setConfirmDelete(true)
+}
 
 
   const toggleOptions = () => {
@@ -117,16 +117,16 @@ const handleSubmit = async (event) => {
   }
 };
 
-const deleteRecord = async (regNo) => {
+const deleteUser = async (regNo) => {
   try {
     // Send a DELETE request to the server with the regNo
-    await axios.get(`http://localhost:3500/deleteUser/${regNo}`);
+    await axios.delete(`http://localhost:3500/deleteUser/${regNo}`);
 
     // Set the confirm delete state to false to close the confirmation dialog
-    setConfirmDelete(false);
+     setConfirmDelete(false);
 
     // Optionally, refresh the data or handle UI updates after deletion
-    console.log("Record deleted successfully");
+    console.log("Record deleted");
 
     // You might want to update the UI here, like refreshing the list of students or showing a success message
   } catch (error) {
@@ -134,6 +134,7 @@ const deleteRecord = async (regNo) => {
     // Optionally, handle error scenarios like showing an error message to the user
   }
 };
+
 
   return (
     <div className="main">
@@ -284,8 +285,8 @@ const deleteRecord = async (regNo) => {
                 {showOptions && (
                 <div className="options-menu">
                     <div className="option-item1" onClick={edit}>Edit</div>
-                    <div className="option-item" >Disable</div>
-                    <div className="option-item2"onClick={del}>Disable</div>
+                    <div className="option-item" onClick={deleteConfirm}>Delete</div>
+                    <div className="option-item2" >Disable</div>
                 </div>
             )}
             </div>
@@ -418,7 +419,7 @@ const deleteRecord = async (regNo) => {
         <div className="popup-overlay">
           <div className="confirmation-dialog">
             <p>Are you sure you want to delete this user?</p>
-            <button onClick={deleteRecord(selectedStudent.regNo)}>OK</button>
+            <button onClick={() => deleteUser(selectedStudent.regNo)}>OK</button>
             <button onClick={handleCancel}>Cancel</button>
           </div>
         </div>
