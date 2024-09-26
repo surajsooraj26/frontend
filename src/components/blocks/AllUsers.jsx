@@ -286,7 +286,7 @@ const deleteUser = async (regNo) => {
                 <div className="options-menu">
                     <div className="option-item1" onClick={edit}>Edit</div>
                     <div className="option-item" onClick={deleteConfirm}>Delete</div>
-                    <div className="option-item2" >Disable</div>
+                    
                 </div>
             )}
             </div>
@@ -326,10 +326,22 @@ const deleteUser = async (regNo) => {
                 <tr>
                   <td width={210}>
                   <label>Programme</label>
-                    <input 
-                    type="text"
+                    <select
+                    
                     defaultValue={selectedStudent.programme}
-                    />
+                    >
+                     <option value="">-- Select --</option>
+                  <option value="MSc Computer Science">
+                    MSc Computer Science
+                  </option>
+                  <option value="MSc Computer Science(AI)">
+                    MSc Computer Science(AI)
+                  </option>
+                  <option value="MSc Computer Science(ML)">
+                    MSc Computer Science(ML)
+                  </option>
+                  <option value="M.tech">M.tech</option>
+                    </select>
                   </td>
                   <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
                   <td>
