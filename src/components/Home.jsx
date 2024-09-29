@@ -39,9 +39,9 @@ const Home = ({ setToken }) => {
           <img src={BannerBackground} alt="" />
         </div>
         <div className="home-text-section">
-          <h1 className="primary-heading">Lorem</h1>
+          <h1 className="primary-heading">Library Attendence</h1>
           <p className="primary-text">
-          Using a barcode reader for library attendance streamlines the process by allowing students and staff to quickly scan their IDs as they enter or exit. This automated system ensures accurate tracking of library usage, reduces manual errors, and enhances efficiency. By simply scanning a barcode, attendance records are instantly updated in the library's database, making it easier to monitor traffic patterns, manage resources, and ensure that the library operates smoothly.
+          An innovative web application is designed to streamline and enhance the library attendance tracking process. Leveraging the power of barcode scanning technology, application provides a convenient and efficient solution for libraries to manage visitor records, attendance statistics, and other relevant data.
           </p>
           <button className="secondary-button" onClick={() => setVisible(true)}>
             Log In <FiArrowRight />{" "}

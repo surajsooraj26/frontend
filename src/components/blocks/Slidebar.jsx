@@ -1,4 +1,5 @@
 import React from "react";
+import BannerBackground from "../../assets/Logo2.svg";
 
 const Slidebar = ({ onLinkClick }) => {
   function signout() {
@@ -10,7 +11,7 @@ const Slidebar = ({ onLinkClick }) => {
       <ul>
         <li>
           <a href="#" onClick={() => onLinkClick("main")}>
-            <span className="title">LOGO</span>
+          <img src={BannerBackground} alt="" />
           </a>
         </li>
         <li>
@@ -73,7 +74,7 @@ const Slidebar = ({ onLinkClick }) => {
             <span className="title">Add User</span>
           </a>
         </li>
-        <li>
+        {/* <li>
           <a href="#" onClick={(e) => {
               e.preventDefault();
               signout();
@@ -84,7 +85,7 @@ const Slidebar = ({ onLinkClick }) => {
             </span>
             <span className="title">Settings</span>
           </a>
-        </li>
+        </li> */}
         {/* <li>
           <a href="#">
             <span className="icon">

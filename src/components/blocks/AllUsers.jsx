@@ -175,14 +175,14 @@ const disableUser = async (regNo) => {
             <h2>All Users</h2>
             <SlOptionsVertical />
           </div>
-          <button
+          {/*<button
             className="filter"
             onClick={() => setFilterVisible(!isFilterVisible)}
             style={{ marginBottom: "15px" }}
           >
             Filter
             <CiFilter className="filter-icon" />
-          </button>
+          </button>*/}
           {isFilterVisible && (
 
 

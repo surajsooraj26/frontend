@@ -7,6 +7,7 @@ const Main = ({ setCurrentView }) => {
   const { setlogData, setDetails } = useContext(LogContext);
 
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showStatusConfirmation, setStatusShowConfirmation] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -24,8 +25,10 @@ const Main = ({ setCurrentView }) => {
           const response = await axios.post("http://localhost:3500/log", { regno });
           setlogData(response.data);
           inputRef.current.value = ""; // Clear the input field
-
-          if (!response.data.exist) {
+           if(response.data.state === true){
+            setStatusShowConfirmation(true)
+          }
+          else if (!response.data.exist) {
             setShowConfirmation(true); // Show the confirmation dialog if response.data.exist is false
           } else {
             axios.post("http://localhost:3500/total")
@@ -62,8 +65,9 @@ const Main = ({ setCurrentView }) => {
     setCurrentView('register'); // Set the current view to 'register' if the user confirms
     setShowConfirmation(false); // Hide the confirmation dialog
   };
-
+  
   const handleCancel = () => {
+    setStatusShowConfirmation(false);
     setShowConfirmation(false); // Hide the confirmation dialog without changing the view
   };
 
@@ -89,6 +93,14 @@ const Main = ({ setCurrentView }) => {
             <p>Record doesn't exist!</p>
             <button onClick={handleConfirm}>OK</button>
             <button onClick={handleCancel}>Cancel</button>
+          </div>
+        </div>
+      )}
+      {showStatusConfirmation && (
+        <div className="popup-overlay">
+          <div className="confirmation-dialog">
+            <p>Access Denied</p>
+            <button onClick={handleCancel}>Ok</button>
           </div>
         </div>
       )}
