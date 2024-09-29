@@ -15,6 +15,7 @@ const AllUsers = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [editOption, setEditOption] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [confirmDisable, setConfirmDisable] = useState(false)
   
 
   const optionsRef = useRef(null);
@@ -63,6 +64,11 @@ const deleteConfirm = () =>{
   setConfirmDelete(true)
 }
 
+const disableConfirm = () =>{
+  setConfirmDisable(true)
+
+}
+
 
   const toggleOptions = () => {
     setShowOptions(prevState => !prevState);
@@ -78,7 +84,8 @@ const handleSelectChange = (e) => {
 };
 
 const handleCancel = () => {
-  setConfirmDelete(false); 
+  setConfirmDelete(false);
+  setConfirmDisable(false);
 };
 
 const handleSubmit = async (event) => {
@@ -132,6 +139,30 @@ const deleteUser = async (regNo) => {
   } catch (error) {
     console.error("There was an error deleting the record:", error);
     // Optionally, handle error scenarios like showing an error message to the user
+  }
+};
+
+const disableUser = async (regNo) => {
+  try {
+    // Send the regNo in the request body
+    const response = await axios.post('http://localhost:3500/disableUser', {
+      regNo: regNo  // Pass regNo in the request body
+    });
+
+    const updatedStudent = response.data.updatedStudent;
+
+    setSelectedStudent(response.data.updatedStudent); // Update the selectedStudent state
+    const updatedStudentList = studentList.map((student) =>
+      student.regNo === updatedStudent.regNo ? updatedStudent : student
+    );
+    setStudentList(updatedStudentList);
+
+    // Set confirmation disable state
+
+    setConfirmDisable(false);
+    console.log(responce)
+  } catch (err) {
+    console.log("There was an error disabling the user", err);
   }
 };
 
@@ -285,7 +316,10 @@ const deleteUser = async (regNo) => {
                 {showOptions && (
                 <div className="options-menu">
                     <div className="option-item1" onClick={edit}>Edit</div>
-                    <div className="option-item" onClick={deleteConfirm}>Delete</div>
+                    <div className="option-item" onClick={disableConfirm}>
+  {selectedStudent.status === true || selectedStudent.status === undefined ? 'Disable' : 'Enable'}
+</div>
+                    <div className="option-item2" onClick={deleteConfirm}>Delete</div>
                     
                 </div>
             )}
@@ -436,6 +470,20 @@ const deleteUser = async (regNo) => {
           </div>
         </div>
       )}
+     {confirmDisable && (
+  <div className="popup-overlay">
+    <div className="confirmation-dialog">
+      <p>
+        {selectedStudent.status === true || selectedStudent.status === undefined
+          ? "Are you sure you want to disable this user?"
+          : "Are you sure you want to enable this user?"}
+      </p>
+      <button onClick={() => disableUser(selectedStudent.regNo)}>OK</button>
+      <button onClick={handleCancel}>Cancel</button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
