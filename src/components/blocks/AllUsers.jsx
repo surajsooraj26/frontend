@@ -316,10 +316,10 @@ const disableUser = async (regNo) => {
                 {showOptions && (
                 <div className="options-menu">
                     <div className="option-item1" onClick={edit}>Edit</div>
-                    <div className="option-item" onClick={disableConfirm}>
+                    <div className="option-item2" onClick={disableConfirm}>
   {selectedStudent.status === true || selectedStudent.status === undefined ? 'Disable' : 'Enable'}
 </div>
-                    <div className="option-item2" onClick={deleteConfirm}>Delete</div>
+                    {/* <div className="option-item2" onClick={deleteConfirm}>Delete</div> */}
                     
                 </div>
             )}
