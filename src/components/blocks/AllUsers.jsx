@@ -295,6 +295,7 @@ const disableUser = async (regNo) => {
                   <td>{student.name}</td>
                   <td>{student.programme}</td>
                   <td>{student.duration.start + "-" + student.duration.end}</td>
+                  
                 </tr>
               ))}
             </tbody>
@@ -397,6 +398,7 @@ const disableUser = async (regNo) => {
                 </tr>
              <tr>
                <td>
+                <label>Gender</label>
                 <select
                 name="gender"
                 defaultValue={selectedStudent.gender}>
@@ -407,12 +409,30 @@ const disableUser = async (regNo) => {
                 
                 
                 </td>
-                <td>&nbsp; </td> <td> <button type="submit" className="btn btn-primary">
+                <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  <td>
+                    <label>Phone Number</label>
+                    <input
+                    type="number"
+                    defaultValue={selectedStudent.phone}
+                      />
+                  </td>
+                  <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  <td>
+                    <label>Address</label>
+                    <textarea name="address" id="address" defaultValue={selectedStudent.address}/>
+
+                  </td>
+                  </tr>
+                  <div className="button">
+                  <tr>
+                <td cellpadding="15"> <button type="submit" className="btn btn-primary">
               Save
             </button></td>
+            </tr>
+            </div>
 
-
-                </tr>
+                
                 </table>
                 </form>
             ) : (
@@ -448,8 +468,16 @@ const disableUser = async (regNo) => {
                   </td>
                 </tr>
              <tr>
-               <td>
+               <td > 
                 <p>{selectedStudent.gender}</p>
+                </td>
+                <td>
+                <p>{selectedStudent.phone}</p>
+                </td>
+                </tr>
+                <tr>
+                <td width={50}>
+                <p>{selectedStudent.address}</p>
                 </td>
                 </tr>
 

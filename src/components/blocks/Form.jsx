@@ -9,6 +9,9 @@ const Form = () => {
     programme: "",
     duration: { start: "", end: "" },
     gender: "",
+    phone: "",
+    address: ""
+
   });
   const [file, setFile] = useState(null);
   const [showCourse, setShowCourse] = useState(false); // State to manage the visibility of the course field
@@ -23,6 +26,8 @@ const Form = () => {
     durationEnd: useRef(null),
     gender: useRef(null),
     photograph: useRef(null),
+    phone: useRef(null),
+    address: useRef(null),
   };
 
   const handleChange = (event) => {
@@ -63,6 +68,8 @@ const Form = () => {
     formDataToSend.append("duration[start]", formData.duration.start);
     formDataToSend.append("duration[end]", formData.duration.end);
     formDataToSend.append("gender", formData.gender);
+    formDataToSend.append("phone", formData.phone);
+    formDataToSend.append("address", formData.address);
     formDataToSend.append("image", file);
 
     try {
@@ -91,6 +98,8 @@ const Form = () => {
         programme: "",
         duration: { start: "", end: "" },
         gender: "",
+        phone: "",
+        address:"",
       });
       setFile(null);
       setShowCourse(false); // Reset the course visibility
@@ -230,6 +239,34 @@ const Form = () => {
                   <option value="Female">Female</option>
                 </select>
               </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="name">Phone Number</label>
+              <input
+                type="number"
+                placeholder="Phone Number"
+                id="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                ref={inputRefs.phone}
+                name="phone"
+                className="form-control no-arrows"  
+                
+              />
+            </div>
+            <div className="form-group">
+            <label htmlFor="name">Address</label>
+            <input
+              type="text"
+              placeholder="Address"
+              id="address"
+              value={formData.address}
+              onChange={handleChange}
+              ref={inputRefs.address}
+              name="address"
+              className="form-control no-arrows"
+              
+            />
             </div>
             <button type="submit" className="btn btn-primary">
               Register

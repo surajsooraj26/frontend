@@ -12,6 +12,7 @@ import Modal from "react-modal";
 
 const Home = ({ setToken }) => {
   const [visible, setVisible] = useState(false);
+  const [errorBox, setErrorBox] = useState(false);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +27,9 @@ const Home = ({ setToken }) => {
       const token = response.data.token;
       localStorage.setItem("token", token);
       setToken(token);
+      setErrorBox(false)
     } catch (error) {
+      setErrorBox(true)
       console.error("Error logging in:", error);
     }
   };
@@ -62,9 +65,10 @@ const Home = ({ setToken }) => {
           <div className="close-container">
             <CgCloseO onClick={() => setVisible(false)} className="close" />
           </div>
-        </div>
+          </div>
 
         <form onSubmit={handleSubmit}>
+          {errorBox ? (<p className="error-message">Error Logging In</p>) : null}
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
